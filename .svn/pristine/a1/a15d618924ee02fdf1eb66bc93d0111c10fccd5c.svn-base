@@ -1,0 +1,223 @@
+
+.warp.data-v-e4cdeb04 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+}
+.scaling-squares-spinner.data-v-e4cdeb04 {
+      box-sizing: border-box;
+}
+.scaling-squares-spinner.data-v-e4cdeb04 {
+      height: 65px;
+      width: 65px;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      -webkit-animation: scaling-squares-animation-data-v-e4cdeb04 1250ms;
+              animation: scaling-squares-animation-data-v-e4cdeb04 1250ms;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04 {
+      height: calc(65px * 0.25 / 1.3);
+      width: calc(65px * 0.25 / 1.3);
+      margin-right: auto;
+      margin-left: auto;
+      border: calc(65px * 0.04 / 1.3) solid #42A2FA;
+      position: absolute;
+      -webkit-animation-duration: 1250ms;
+              animation-duration: 1250ms;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(1) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-1-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-1-data-v-e4cdeb04;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(2) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-2-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-2-data-v-e4cdeb04;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(3) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-3-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-3-data-v-e4cdeb04;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(4) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-4-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-4-data-v-e4cdeb04;
+}
+@-webkit-keyframes scaling-squares-animation-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+}
+100% {
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+}
+}
+@keyframes scaling-squares-animation-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+}
+100% {
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-1-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,150%) scale(2,2);
+                transform: translate(150%,150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-1-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,150%) scale(2,2);
+                transform: translate(150%,150%) scale(2,2);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-2-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,150%) scale(2,2);
+                transform: translate(-150%,150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-2-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,150%) scale(2,2);
+                transform: translate(-150%,150%) scale(2,2);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-3-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,-150%) scale(2,2);
+                transform: translate(-150%,-150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-3-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,-150%) scale(2,2);
+                transform: translate(-150%,-150%) scale(2,2);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-4-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,-150%) scale(2,2);
+                transform: translate(150%,-150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-4-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,-150%) scale(2,2);
+                transform: translate(150%,-150%) scale(2,2);
+}
+}
+
+
+.seaerch_warpper.data-v-43c15a30{
+	height: 37px;
+	padding: 8px 10px;
+	border-bottom: 1px solid #ECECEC;
+	display: flex;
+}
+.calendar_icon.data-v-43c15a30{
+	flex:1;
+	margin: 0 auto;
+}
+.search.data-v-43c15a30{
+	flex: 5;
+}
+.tableHead.data-v-43c15a30,
+.tableMain.data-v-43c15a30,
+.tableFoot.data-v-43c15a30{
+	width: 94%;
+	margin: 0 auto;
+	display: flex;
+}
+._table.data-v-43c15a30{
+	border: 1px solid #ccc;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+._thead > ._tr.data-v-43c15a30,
+._tfoot > ._tr.data-v-43c15a30{
+    height: 30px;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+._td.data-v-43c15a30{
+	word-wrap:break-word;
+	word-break:break-all;
+}
+.tableFoot.data-v-43c15a30,
+.tableHead.data-v-43c15a30{
+	/* padding: 5px 0; */
+	min-height: 35px;
+	text-align: center;
+	background-color: #f2f2f2;
+	line-height: 30px;
+}
+.tableMain.data-v-43c15a30{
+	height: calc(100vh - 168px);
+	overflow: auto;
+	border-left:#f2f2f2;
+	border-right:#f2f2f2;
+}
+.tableMain_f.data-v-43c15a30{
+	display: flex;
+	flex-wrap:wrap-reverse
+}
+.tableMain_f view.data-v-43c15a30{
+	min-height: 35px;
+	word-wrap:break-word;
+	border-left: 1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	flex-grow: 0;
+	flex-shrink: 0;
+	word-break: normal;
+	flex-wrap: nowrap;
+	font-size: 12px;
+}
+.tableHead view.data-v-43c15a30,
+.tableFoot view.data-v-43c15a30{
+	height: auto;
+	border-left: 1px solid #ccc;
+	flex-grow: 0;
+	flex-shrink: 0;
+	word-break: normal;
+	flex-wrap: nowrap;
+	word-wrap:break-word;
+}
+.tableFoot view.data-v-43c15a30{
+	font-size: 10px;
+}
+.tableHead view.data-v-43c15a30:first-child,
+.tableFoot view.data-v-43c15a30:first-child{
+	border-left: none;
+}
+.tableMain_f view.data-v-43c15a30:last-child{
+	border-right: 1px solid #ccc;
+}
+.tableMain_f view.data-v-43c15a30:not(:first-child){
+	text-align: right;
+}
+/* .tableMain_f view::after{
+	content: '';
+	display: block;
+	 position: absolute;
+	    width: 1px;
+	    height: 100%;
+	    border-right: 1px solid #ccc;
+	    background-color: #ccc;
+	    top: 0;
+	    right: 0;
+} */
+

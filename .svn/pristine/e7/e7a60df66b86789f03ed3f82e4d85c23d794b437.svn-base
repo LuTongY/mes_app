@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "报工",
+  "usingComponents": {
+    "u-line": "/uview-ui/components/u-line/u-line",
+    "u-toast": "/uview-ui/components/u-toast/u-toast",
+    "loading": "/components/loading/loading"
+  }
+}

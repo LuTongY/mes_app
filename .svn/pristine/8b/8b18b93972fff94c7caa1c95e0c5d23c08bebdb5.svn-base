@@ -1,0 +1,241 @@
+<template>
+	<view>
+		<view class="seaerch_warpper">
+			<view class="calendar_icon">
+				<view style="width: 40px;height: 40px;margin: 0 auto;">
+					<u-icon  size="40" name="calendar" @click="timeShow=true"></u-icon>
+				</view>
+			</view>
+			<view class="search">
+				<u-search placeholder="请输入账户名称" v-model="search"></u-search>
+			</view>
+			<view>
+			        <u-datetime-picker
+			                :show="timeShow"
+			                v-model="b_date"
+			                mode="date"
+							@cancel="timeShow=false"
+							@confirm="GetList"
+			        ></u-datetime-picker>
+			</view>
+			
+		</view>
+		<u-empty mode="search" height="320" icon="http://cdn.uviewui.com/uview/empty/list.png"
+			v-if="fiflterData.length>0?false:true" text="请搜索">
+		</u-empty>
+		<view v-else>
+			<view class="tableHead">
+			   <view style="width: calc(32% - 1px);">帐号</view>
+			   <view style="width: calc(17% - 1px);">初期</view>
+			   <view style="width: calc(17% - 1px);">收入</view>
+			   <view style="width: calc(17% - 1px);">支出</view>
+			   <view style="width: calc(17% - 1px);">结余</view>
+			</view>
+			<view class="tableMain" style="display: block;">
+			  <view v-for="(item,index) in fiflterData" class="tableMain_f">
+				<view style="width: calc(32% - 2px);" v-if="item.PID">{{item['账号']}}</view>
+				<view style="width: calc(32% - 2px);" v-if="!item.PID" v-html="item['账号']" ></view>
+				<view style="width: calc(17% - 1px);">{{jeFormatter(item['期初'])}}</view>
+				<view style="width: calc(17% - 1px);">{{jeFormatter(item['收入'])}}</view>
+				<view style="width: calc(17% - 1px);">{{jeFormatter(item['支出'])}}</view>
+				<view style="width: calc(17% - 1px);">{{jeFormatter(item['结余'])}}</view>
+			 </view>
+			</view>
+			<view class="tableFoot">
+							<view style="width: calc(32% - 1px);">总合计</view>
+							<view style="width: calc(17% - 1px);">{{footer.initial}}</view>
+							<view style="width: calc(17% - 1px);">{{footer.income}}</view>
+							<view style="width: calc(17% - 1px);">{{footer.expend}}</view>
+							<view style="width: calc(17% - 1px);">{{footer.surplus}}</view>
+			</view>
+		</view>
+		<loading :load="loading"></loading>
+	</view>
+	
+</template>
+
+<script>
+	import loading from "@/components/loading/loading.vue"
+	export default{
+		data(){
+			return {
+				b_date:Number(new Date()),
+				data:[],
+				timeShow:false,
+				search:'',
+				loading:false,
+			} 
+		},
+		computed:{
+			fiflterData(){
+				let list=[];
+				if(!this.search){
+					list=this.data
+				}else{
+					this.data.forEach((item,index)=>{
+						if(item.账号.indexOf(this.search)> -1){
+							list.push(item);
+						}
+					})
+				}
+				return list
+			},
+			//页脚汇总
+			footer(){
+				let footerData={'initial':0,'income':0,'expend':0,'surplus':0}
+				this.fiflterData.forEach((item,index)=>{
+					if(item.账号.indexOf('合计行')== -1){
+						footerData.initial +=parseFloat(item.期初)?parseFloat(item.期初):0
+						footerData.income  +=parseFloat(item.收入)?parseFloat(item.收入):0
+						footerData.expend  +=parseFloat(item.支出)?parseFloat(item.支出):0
+						footerData.surplus +=parseFloat(item.结余)?parseFloat(item.结余):0
+					}		
+				})
+				for(let key in footerData ){
+					footerData[key]=this.jeFormatter(footerData[key])
+				}
+				console.log(this.fiflterData)
+				return footerData
+			}
+		},
+		mounted() {
+		},
+		methods:{
+			GetList(data){
+				this.loading=true,
+				data?this.b_date=data.value:Number(new Date())
+				this.timeShow=false
+				console.log(this.$moment(this.b_date).format('YYYY-MM-DD'));
+				this.$Api.report.finance.teller.GetList({'search[b_date]':this.$moment(this.b_date).format('YYYY-MM-DD')}).then((res)=>{
+					if(res.data.code==200){
+						this.data=res.data.data.rows
+					}
+					this.loading=false;
+				})
+			},
+			jeFormatter(value, row){
+				if(parseInt(value)<=0 || !value){
+					return "";
+				}
+				else{
+					return this.commafy(Math.round(value*100)/100,0);
+				}
+			},
+			commafy(num,n) 
+			{ 	
+				num = String(num.toFixed(n)); 
+				var re = /(-?\d+)(\d{3})/; 
+				while(re.test(num)) {
+					num = num.replace(re,"$1,$2");
+				}
+				return num;
+			}
+		}
+	}
+</script>
+
+<style scoped>
+.seaerch_warpper{
+	height: 37px;
+	padding: 8px 10px;
+	border-bottom: 1px solid #ECECEC;
+	display: flex;
+	
+}
+.calendar_icon{
+	flex:1;
+	margin: 0 auto;
+}
+.search{
+	flex: 5;
+}
+.tableHead,
+.tableMain,
+.tableFoot{
+	width: 94%;
+	margin: 0 auto;
+	display: flex;
+}
+table{
+	border: 1px solid #ccc;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+thead > tr,
+tfoot > tr{
+    height: 30px;
+    text-align: center;
+    background-color: #f2f2f2;
+	}
+td{
+	word-wrap:break-word;
+	word-break:break-all;
+}
+.tableFoot,
+.tableHead{
+	/* padding: 5px 0; */
+	min-height: 35px;
+	text-align: center;
+	background-color: #f2f2f2;
+	line-height: 30px;
+}
+.tableMain{
+	height: calc(100vh - 168px);
+	overflow: auto;
+	border-left:#f2f2f2;
+	border-right:#f2f2f2;
+}
+
+.tableMain_f{
+	display: -webkit-flex;
+	display: flex;
+	flex-wrap:wrap-reverse
+}
+.tableMain_f view{
+	min-height: 35px;
+	word-wrap:break-word;
+	border-left: 1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	flex-grow: 0;
+	flex-shrink: 0;
+	word-break: normal;
+	flex-wrap: nowrap;
+	font-size: 12px;
+}
+.tableHead view,
+.tableFoot view{
+	height: auto;
+	border-left: 1px solid #ccc;
+	flex-grow: 0;
+	flex-shrink: 0;
+	word-break: normal;
+	flex-wrap: nowrap;
+	word-wrap:break-word;
+}
+.tableFoot view{
+	font-size: 10px;
+}
+.tableHead view:first-child,
+.tableFoot view:first-child{
+	border-left: none;
+}
+
+.tableMain_f view:last-child{
+	border-right: 1px solid #ccc;
+}
+.tableMain_f view:not(:first-child){
+	text-align: right;
+}
+/* .tableMain_f view::after{
+	content: '';
+	display: block;
+	 position: absolute;
+	    width: 1px;
+	    height: 100%;
+	    border-right: 1px solid #ccc;
+	    background-color: #ccc;
+	    top: 0;
+	    right: 0;
+} */
+</style>

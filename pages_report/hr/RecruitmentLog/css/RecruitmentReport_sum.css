@@ -1,0 +1,84 @@
+*{
+	font-family: '微软雅黑';
+}
+.report_warpper{
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	/* line-height: 40px; */
+	
+}
+.seaerch_warpper{
+	flex:0 0 40px;
+	padding: 8px 10px;
+	padding-bottom: 0;
+	border-bottom: 1px solid #ECECEC;
+	display: flex;
+}
+.seaerch_warpper>view{
+	flex: 1;
+}
+.seaerch_warpper .seaerch_warpper_userName{
+	/* line-height: 40px; */
+	flex: 0 0 80px;
+}
+.main{
+	flex: 1 1 auto;
+	overflow: auto;
+}
+.table_footer{
+	width: 100%;
+	flex:0 0 45px;
+	/* position: fixed; */
+	/* bottom: 0px; */
+	background-color: #4E80FB;
+	color: #fff;
+	font-weight: 600;
+}
+
+.table_header .table_header_tr,
+.table_body .table_body_tr,
+.table_footer .table_footer_tr{
+	display: flex;
+}
+.table_body .table_body_tr{
+	border-bottom: 1px solid #eee;
+}
+.table_header .table_header_tr>view,
+.table_body .table_body_tr>view,
+.table_footer .table_footer_tr>view{
+	flex: 1;
+	text-align: center;
+	height: 40px;
+	padding: 0 5px;
+	font-size: 14px;
+	
+}
+.table_body .table_body_tr>view{
+	line-height: 40px; 
+}
+.table_footer .table_footer_tr>view{
+	line-height: 40px;
+}
+.table_header .table_header_tr>view{
+	font-size: 11px;
+}
+.table_header{
+	background-color: #4E80FB;
+	color: #fff;
+	font-weight: 600;
+}
+.table{
+	height: 100%;
+}
+.table_body{
+	overflow: auto;
+}
+.searchPopup{
+	padding: 12px ;
+	width: 70vw;
+}
+.u-radio,
+.u-radio-label{
+	padding: 0 5px;
+}

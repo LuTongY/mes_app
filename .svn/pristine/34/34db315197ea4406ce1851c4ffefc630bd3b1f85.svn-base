@@ -1,0 +1,54 @@
+.report_warpper.data-v-2808e698 {
+  height: 100%;
+}
+.seaerch_warpper.data-v-2808e698 {
+  height: 37px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #ECECEC;
+  display: flex;
+}
+.search.data-v-2808e698 {
+  flex: 5;
+}
+.calendar_icon.data-v-2808e698 {
+  flex: 1;
+  margin: 0 auto;
+}
+.main.data-v-2808e698 {
+  height: calc(100% - 54px);
+  overflow: auto;
+}
+.searchPopupWarpper.data-v-2808e698 {
+  width: 60vw;
+  padding: 8vw;
+  padding-bottom: 10px;
+}
+.table_header.data-v-2808e698 {
+  display: flex;
+  background-color: #4E80FB;
+}
+.table_header > view.data-v-2808e698 {
+  flex: 1;
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.table_body.data-v-2808e698 {
+  overflow: auto;
+  height: calc(100vh - 94px);
+}
+.table_body .table_body_tr.data-v-2808e698:nth-child(2n) {
+  background-color: #E6F3F9;
+}
+.table_body .table_body_tr.data-v-2808e698 {
+  display: flex;
+  font-size: 14px;
+  min-height: 45px;
+  border-bottom: 1px solid #ECECEC;
+  align-items: center;
+}
+.table_body .table_body_tr > view.data-v-2808e698 {
+  flex: 1;
+}
+

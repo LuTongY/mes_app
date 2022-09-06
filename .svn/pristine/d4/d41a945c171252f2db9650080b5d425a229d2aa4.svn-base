@@ -1,0 +1,237 @@
+<template>
+	<view class="report_warpper">
+		<view class="tab">
+			<view class="tab_left">
+				<label style="font-size: 16px;margin-right: 5px;">当前选项:</label>
+				<span style="font-weight: 600;">{{isSwitch?'沟通记录详情':'简历详情'}}</span>
+			</view>
+			<view class="tab_right">
+				<u-switch v-model="isSwitch" @change="changeSwitch"></u-switch>
+			</view>
+		</view>
+		<!-- 内容区 -->
+		<view class="main">
+			<u-empty mode="search" height="320" icon="http://cdn.uviewui.com/uview/empty/car.png"
+				v-if="listData.length>0?false:true">
+			</u-empty>
+			<u-collapse v-else>
+				<template v-for="(item,index) in listData">
+					<view style="background-color: #e6e6e6;padding: 8px 0;" >日期:{{item.date}}
+					</view>
+					<u-collapse-item v-for="(c_item,c_index) in item.children" :title="collapse_item_title(c_item)" name="Docs guide" :value="item.priority">
+						<view class="main_table_body" >
+							<!-- 简历详情 -->
+							<template v-if="!isSwitch">
+								<view class="alone">
+									<view class="main_table_body_td_title contactResult alone">沟通结果</view>
+									<view>
+										<u--textarea :value="c_item.contactResult" placeholder="请输入内容" autoHeight disabled
+											border="surround"></u--textarea>
+									</view>
+								</view>
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">是否复试</view>
+									<view class="table_body_sex">{{c_item.isArrive==1?'是':'否'}}</view>
+									<view class="main_table_body_td_title">复试人</view>
+									<view class="table_body_sex">{{c_item.retester}}</view>
+								</view>
+								<view class="alone">
+									<view class="main_table_body_td_title contactResult alone">复试结果</view>
+									<view>
+										<u--textarea :value="c_item.secondResult" placeholder="请输入内容" autoHeight disabled
+											border="surround"></u--textarea>
+									</view>
+								</view>
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">是否录用</view>
+									<view class="table_body_sex">{{c_item.isHire}}</view>
+								</view>
+								<view class="alone">
+									<view class="main_table_body_td_title remark ">录用薪资待遇</view>
+									<view>
+										<u--textarea :value="c_item.hireSalary" placeholder="请输入内容" autoHeight disabled
+											border="surround"></u--textarea>
+									</view>
+								</view>
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title" style="flex: 1;">预计报到时间</view>
+									<view class="table_body_sex" style="flex: 3;">{{c_item.checkinExpect}}</view>
+								</view>
+								<template v-if="c_item.isShowContact">
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">微信</view>
+									<view class="table_body_name" style="flex: 3;text-align: left;text-indent: 1em;">
+										{{c_item.wx}}
+									</view>
+								</view>
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">联系电话</view>
+									<view class="table_body_name" style="flex: 3;text-align: left;text-indent: 1em;">
+										<a :href="'tel:'+c_item.tel"
+											style="color:#606266;text-decoration: none;text-align:left;font-size: 18px;">{{c_item.tel}}</a>
+									</view>
+								</view>	
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">简历</view>
+									<view class="table_body_name" style="flex: 3;text-align: left;text-indent: 1em;">
+										<a :href="c_item.resume">{{c_item.resumeName}}</a>
+									</view>
+								</view>
+								</template>
+								<view v-if="c_item.remark" class="alone">
+									<view class="main_table_body_td_title remark alone">备注</view>
+									<view>
+										<u--textarea :value="c_item.remark" placeholder="请输入内容" autoHeight disabled
+											border="surround"></u--textarea>
+									</view>
+								</view>
+							</template>
+							<!-- 沟通记录详情 -->
+							<template v-if="isSwitch">
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">沟通日期</view>
+									<view class="table_body_name">{{c_item.contactTime}}</view>
+									<view class="main_table_body_td_title">沟通时长(分)</view>
+									<view class="table_body_sex">{{c_item.contactDuration}}</view>
+								</view>
+								<view class="main_table_body_tr">
+									<view class="main_table_body_td_title">是否加微信</view>
+									<view class="table_body_name">{{c_item.isAddWx}}</view>
+									<view class="main_table_body_td_title">沟通结果</view>
+									<view class="table_body_sex">{{c_item.contactRemark}}</view>
+								</view>
+								<template v-if="c_item.isShowContact">
+									<view class="main_table_body_tr">
+										<view class="main_table_body_td_title">微信</view>
+										<view class="table_body_name"
+											style="flex: 3;text-align: left;text-indent: 1em;">
+											{{c_item.wx}}
+										</view>
+									</view>
+									<view class="main_table_body_tr">
+										<view class="main_table_body_td_title">联系电话</view>
+										<view class="table_body_name"
+											style="flex: 3;text-align: left;text-indent: 1em;">
+											<a :href="'tel:'+c_item.tel"
+												style="color:#606266;text-decoration: none;text-align:left;font-size: 18px;">{{c_item.tel}}</a>
+										</view>
+									</view>
+									<view class="main_table_body_tr">
+										<view class="main_table_body_td_title">简历</view>
+										<view class="table_body_name"
+											style="flex: 3;text-align: left;text-indent: 1em;">
+											<a :href="c_item.resume">{{c_item.resumeName}}</a>
+										</view>
+									</view>
+								 <view v-if="c_item.contactPictures" class="alone">
+										<view class="main_table_body_td_title remark alone">沟通截图</view>
+										<view>
+											<u-album :urls="c_item.contactPictures"></u-album>
+										</view>
+									</view>
+								</template>
+							</template>
+						</view>
+					</u-collapse-item>
+				</template>
+
+			</u-collapse>
+		</view>
+		<loading :load="loading"></loading>
+	</view>
+
+</template>
+
+<script>
+	import loading from "@/components/loading/loading.vue"
+
+	export default {
+		data() {
+			return {
+				loading: true,
+				monthShow: false,
+				month: Number(new Date()),
+				list: [],
+				search: '',
+				searchPopup: false,
+				searchFilter: '',
+				data: [],
+				isEmpty: false,
+				isSwitch: false,
+			}
+		},
+		computed: {
+			listData() {
+				let list = [];
+				if (!this.isSwitch) {
+					list = this.data.candidateList
+				} else {
+					list = this.data.contactList
+				}
+				list ? 'list' : list = []
+				console.log(list)
+				return list
+			}
+		},
+		onLoad: function(option) { //option为object类型，会序列化上个页面传递的参数
+			console.log(option); //打印出上个页面传递的参数。
+			this.search = option
+		},
+
+		mounted() {
+			this.GetList()
+		},
+
+		methods: {
+			GetList() {
+				if (uni.getStorageSync('userName') == 0 || !uni.getStorageSync('userName')) {
+					uni.showToast({
+						icon: 'none',
+						position: 'top',
+						title: '没有获取到用户工号'
+					});
+					this.loading = false;
+					return false;
+				}
+				this.monthShow = false;
+				this.loading = true;
+				this.$Api.report.hr.CandidateContact.GetStatDetail({
+					"search[adminId]": this.search.adminId,
+					"search[createDate][0]": this.search.start,
+					"search[createDate][1]": this.search.end,
+					'search[userName]': uni.getStorageSync('userName'),
+				}).then((res) => {
+					if (res.data.code == 200) {
+						this.data = res.data.data
+						this.data ? "" : this.data = [];
+
+					}
+					this.loading = false;
+				})
+			},
+			collapse_item_title(item) {
+				let str = '';
+				if (item.name) {
+					str += item.name
+				}
+				if (item.post) {
+					str = str + '/' + item.post
+				}
+				if (item.department) {
+					str = str + '/' + item.department
+				}
+				if (item.salaryRequire) {
+					str = str + '/' + item.salaryRequire
+				}
+				return str;
+			},
+			changeSwitch(mode) {
+				console.log(mode)
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	@import url("./css/RecruitmentReport_item.css");
+</style>

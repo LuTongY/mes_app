@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "应聘者信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-avatar": "/uview-ui/components/u-avatar/u-avatar",
+    "u--textarea": "/uview-ui/components/u--textarea/u--textarea",
+    "u-collapse": "/uview-ui/components/u-collapse/u-collapse",
+    "u-collapse-item": "/uview-ui/components/u-collapse-item/u-collapse-item",
+    "u-album": "/uview-ui/components/u-album/u-album",
+    "loading": "/components/loading/loading"
+  }
+}

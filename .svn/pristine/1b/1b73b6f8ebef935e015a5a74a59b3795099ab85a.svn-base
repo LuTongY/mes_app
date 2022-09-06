@@ -1,0 +1,210 @@
+<template>
+	<view>
+		<view class="seaerch_warpper">
+			<view class="search">
+				<u-search placeholder="请输入账户名称" v-model="search"></u-search>
+			</view>
+			<view class="slot">
+				<slot></slot>
+			</view>
+		</view>
+		<view class="table_warpper" :style="{height:tableWarpperHeight+'px'}">
+			<!-- 表头 -->
+			<view class="tableHead">
+				<view v-for="(item,index) in column" :style="coumentWidth(item)">{{item.label}}</view>
+			</view>
+			<!-- 表体 -->
+			<view class="tableMain" style="display: block;">
+				<view v-for="(item,index) in data" class="tableMain_f">
+					<view v-for="(c_item,c_key,c_index) in column" :style="coumentWidth(c_item)">{{item[c_item.prop]}}</view>
+				</view>
+			</view>
+			<view class="tableFoot" style="display: block;">
+				<view v-for="(item,keys,index) in tableFootSum" class="tableMain_f">
+				    <view v-for="(c_item,c_key,c_index) in column" :style="coumentWidth(c_item)">{{item[c_item.prop]}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name: "gdx-table",
+		props: {
+			//列名
+			column: {
+				type: Array,
+				default: () => {
+					return [];
+				},
+			},
+			//表格数据
+			data: {
+				type: Array,
+				default: () => {
+					return [];
+				}
+			},
+			//汇总列
+			footer:{
+				type:Array,
+				default: () => {
+					return [];
+				}
+			}
+
+		},
+		computed:{
+			//计算表格内容区高度
+			tableWarpperHeight(){
+				let mainHeight;
+				let headDom=document.getElementsByClassName('uni-page-head');
+				let headHeight=headDom.length>0?headDom[0].offsetHeight:0;
+				let seaerchWarpperDom=document.getElementsByClassName('seaerchWarpperHeight');
+				let seaerchWarpperHeight=seaerchWarpperDom.length>0?headDom[0].offsetHeight:0;
+				 mainHeight=document.documentElement.clientHeight-headHeight-seaerchWarpperHeight;
+				return mainHeight;	
+			},
+			//计算页脚合并项
+			tableFootSum(){
+				if(this.footer.length>0){return this.footer}
+				let obj={}
+				this.column.forEach((item,index)=>{
+					index==0?obj[item.prop]="汇总":obj[item.prop]='';
+					 if(item.hasOwnProperty("sum") && item.sum==true && index !=0){
+						 this.data.forEach((c_item,c_index)=>{
+							 obj[item.prop] +=parseFloat(c_item[item.prop] && parseFloat(c_item[item.prop]) != NaN?c_item[item.prop]:0);
+						 })
+					 }
+				})
+				console.log(obj)
+				return [obj]		
+			}
+		},
+		data() {
+			return {
+				search: '',
+				
+			};
+		},
+		mounted() {
+			// this.tableFootSum();
+		},
+		methods: {
+			//处理单元格样式
+			coumentWidth(item) {
+				let style = {
+					flex: item.width ? "0 0 " + item.width : '1',
+				}
+				return style;
+			},
+		},
+	}
+</script>
+
+<style scoped>
+	.seaerch_warpper {
+		height: auto;
+		
+		border-bottom: 1px solid #ECECEC;
+		margin-bottom: 3px;
+
+	}
+	.search {
+		padding: 8px 10px;
+		border-bottom: 1px solid #eee;
+	}
+	.slot{
+		padding: 8px 10px;
+	}
+
+	.tableHead,
+	.tableMain,
+	.tableFoot {
+		width: 94%;
+		margin: 0 auto;
+		display: flex;
+	}
+	.tableFoot,
+	.tableHead {
+		/* padding: 5px 0; */
+		min-height: 35px;
+		text-align: center;
+		background-color: #f2f2f2;
+		line-height: 30px;
+	}
+
+	.tableMain {
+		/* height: calc(100% - 35px); */
+		height: auto;
+		overflow: auto;
+	}
+
+	.tableMain_f {
+		display: -webkit-flex;
+		display: flex;
+		flex-wrap: wrap-reverse
+	}
+
+	.tableMain_f view {
+		min-height: 35px;
+		line-height: 35px;
+		word-wrap: break-word;
+		border-left: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		flex-grow: 0;
+		flex-shrink: 0;
+		word-break: normal;
+		flex-wrap: nowrap;
+		font-size: 12px;
+		word-break: break-word;
+	}
+
+	.tableHead view,
+	.tableFoot view {
+		height: auto;
+		border-left: 1px solid #ccc;
+		flex-grow: 0;
+		flex-shrink: 0;
+		word-break: normal;
+		flex-wrap: nowrap;
+		word-wrap: break-word;
+		flex: 1;
+	}
+
+	.tableFoot view {
+		font-size: 10px;
+		word-break: break-all;
+	}
+
+	.tableHead view:first-child,
+	.tableFoot view:first-child {
+		border-left: none;
+	}
+
+	.tableMain_f view:last-child {
+		border-right: 1px solid #ccc;
+	}
+
+	.tableMain_f view:not(:first-child) {
+		text-align: right;
+	}
+    .tableFoot{
+		position: fixed;
+		bottom: 5px;
+		width: 94%;
+		margin: 0 3%;
+	}
+	/* .tableMain_f view::after{
+	content: '';
+	display: block;
+	 position: absolute;
+	    width: 1px;
+	    height: 100%;
+	    border-right: 1px solid #ccc;
+	    background-color: #ccc;
+	    top: 0;
+	    right: 0;
+} */
+</style>

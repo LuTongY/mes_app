@@ -1,0 +1,219 @@
+<template>
+	
+<view class="wapper">
+	<view class="userinfo_warpper">
+		<view class="user_main">
+			<view class="user">
+				<view>
+				   <p>下午好:路通</p>
+				   <p>2021年11月3日</p>
+				</view>
+				<view>
+					<image style="width: 64px;height: 64px;margin-top: 15px;border-radius: 50%;"  :src="require('../../static/img/user.gif')" alt="" />
+				</view>
+			</view>
+		</view>
+		<view class="often_main">
+				   <view>
+					   <view>
+						  <u-icon name="scan" size="60" labelSize='18px' label="扫码报工" labelPos="bottom" @click="GoScan('/pages/production/Report/Report')" color="#2FB5FA" ></u-icon>
+					  </view>
+				   </view>
+				   <view>
+					    <view>
+					         <u-icon name="home" size="60" labelSize='18px' label="扫码入库" labelPos="bottom" @click="scan" color="#2DD949"></u-icon>
+						</view>
+				   </view>
+				   <view>
+					    <view>
+					      <u-icon name="map" size="60" labelSize='18px' label="库位查询" labelPos="bottom" @click="scan" color="#FCB935"></u-icon>
+						</view>
+				   </view>
+		</view>
+	</view>
+	<view class="classification">	
+		<u-grid :col="4" :border="false">
+		  <template v-for="(item,index) in MenuList">
+			<u-grid-item   @click="nextPage(index)">
+				<u-icon :name="item.icon?item.icon:'star'" :size="42" labelSize='16px' :label="item.title" labelPos="bottom" :color="item.color?item.color:'rgb(96, 98, 102)'"></u-icon>
+			</u-grid-item>	
+		  </template>
+		</u-grid>
+	</view>
+	<Tabbar />
+</view>	
+</template>
+<script>
+	import Tabbar from "@/components/Tabbar/Tabbar.vue"
+	export default {
+		components:{
+			Tabbar,
+		},
+		mounted() {
+			let menus=JSON.parse(uni.getStorageSync('menu')).menus
+			let index=menus.findIndex((v)=>{return v.title=='首页'})
+			this.MenuList=index>-1?menus[index].children:[]
+			console.log(this.MenuList,menus);
+		},
+		data() {
+			return {
+				search:'',
+				title: 'Hello',
+				MenuList:[],
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+            nextPage:function(index){
+				uni.navigateTo({
+					url:"/pages/index/index_Item?index="+index,
+				})
+			},
+			GoScan:function(url){
+				this.scan(url);
+			},
+			scan: function(url) {
+				let _this = this;
+				uni.scanCode({
+					onlyFromCamera: true,
+					success: function(res) {
+						let scanText = {id: res.result};
+						uni.navigateTo({
+							url:url,
+							success:function(res){
+								uni.$emit('StartScan', {scanText})
+							}
+						})
+					   
+					},
+					fail:function(err){
+						uni.showToast({
+							icon: 'none',
+							position: 'top',
+							title:err.errMsg
+						})
+					}
+				});
+			},
+		}
+	}
+</script>
+
+<style scoped lang="scss">
+	.wapper{
+		background-color:#ECECEC;
+		height: 100vh;
+		overflow: hidden;
+	}
+	.grid-text{
+		padding: 5px 0;
+		font-weight: 600;
+		font-family: "Monospace";
+		font-size: 16px;
+	}
+	
+	.userinfo_warpper{
+		height: 35vh;
+		width: 100vw;
+		margin: 0 auto;
+		margin-bottom: 50px;
+		position: relative;
+		 .user_main{
+			 height: 28vh;
+			 background-color: #367EF8;
+			 border-radius: 0 0 30% 30%;
+			 
+			 .user{
+				 padding-top:5vh ;
+				 display: flex;
+				 view:first-child{
+					 flex:2;
+					 p{
+						 color: #fff;
+						 padding: 8px 5vw;
+					 };
+					 p:first-child{
+						 padding-top: 15px;
+						 font-size: 16px;
+						 font-weight: 700;
+					 }
+				 }
+				 view:last-child{
+				 	 flex:1
+				 }
+			 }
+		 }
+		.often_main{
+			padding: 2vh 0;
+			width: 94vw;
+			margin-left: 3vw;
+			 height: 14vh;
+			 position: absolute;
+			 display: flex;
+			 margin-top: -7vh;
+			 background-color: #fff;
+			 border-radius: 15px;
+			 
+		}
+	}
+	.often_main>view{
+			flex: 1;
+			text-align: center;
+			view{
+				 p{
+				 	margin: 10px 0;
+					font-weight: 600;
+				 }
+			};		
+	}
+	.often_main>view>view{
+		position: absolute;
+		width: 33%;
+		top: 50%; /*偏移*/
+		transform: translateY(-50%);
+	}
+	/deep/ .u-icon__icon{
+		margin: 0 auto;
+	}
+	.classification{
+		width: 100vw;
+		height: auto;
+		padding: 20px 0;
+		background-color: #fff;
+		margin: 0 auto;
+		overflow: hidden;
+		
+	}
+	.helpWarpper{
+		width: 100vw;
+		overflow: hidden;
+		margin-top: 2vh;
+		height: calc(100vh - 58vh);
+		
+	}
+	.helpWarpper{
+		background-color: #fff;
+		> view{
+			height: 10vh;
+			margin: 2vh;
+			width: 94vw;
+			display: flex;
+			border-radius: 12px;
+			color: #fff;
+			font-size: 16px;
+			overflow: hidden;
+			line-height: 10vh;
+			text-indent: 2em;
+		};
+		.tutorial {
+			height: 10vh;
+			background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+		};
+		.log {
+			height: 10vh;
+			background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+		};
+	}
+</style>

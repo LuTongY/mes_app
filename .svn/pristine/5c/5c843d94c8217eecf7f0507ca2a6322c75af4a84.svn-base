@@ -1,0 +1,49 @@
+.warpper.data-v-5844d694 {
+  height: 100vh;
+  overflow: hidden;
+}
+.Avatar.data-v-5844d694 {
+  text-align: center;
+}
+.userInfo svg.data-v-5844d694 {
+  height: 36px;
+  width: 36px;
+}
+.userInfo_icon.data-v-5844d694 {
+  text-align: right;
+}
+.userInfo_row.data-v-5844d694 {
+  display: flex;
+}
+.userInfo_row > view.data-v-5844d694 {
+  min-height: 36px;
+  line-height: 36px;
+  padding: 5px 0;
+}
+.userInfo_row .userInfo_col_icon.data-v-5844d694 {
+  flex: 2;
+  text-align: right;
+}
+.userInfo_row .userInfo_col_icon > ._span.data-v-5844d694 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.userInfo_row .userInfo_col_text.data-v-5844d694 {
+  flex: 3;
+}
+.userInfo_row .userInfo_col_text .work_no.data-v-5844d694 {
+  font-size: 28px;
+  font-weight: 600;
+}
+.userInfo_row .userInfo_col_text > ._span.data-v-5844d694 {
+  margin-left: 18px;
+  font-size: 18px;
+}
+.remark.data-v-5844d694 {
+  padding-top: 50px;
+  text-indent: 1em;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 30px;
+}
+

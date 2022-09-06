@@ -1,0 +1,208 @@
+
+.warp.data-v-e4cdeb04 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+}
+.scaling-squares-spinner.data-v-e4cdeb04 {
+      box-sizing: border-box;
+}
+.scaling-squares-spinner.data-v-e4cdeb04 {
+      height: 65px;
+      width: 65px;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      -webkit-animation: scaling-squares-animation-data-v-e4cdeb04 1250ms;
+              animation: scaling-squares-animation-data-v-e4cdeb04 1250ms;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04 {
+      height: calc(65px * 0.25 / 1.3);
+      width: calc(65px * 0.25 / 1.3);
+      margin-right: auto;
+      margin-left: auto;
+      border: calc(65px * 0.04 / 1.3) solid #42A2FA;
+      position: absolute;
+      -webkit-animation-duration: 1250ms;
+              animation-duration: 1250ms;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(1) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-1-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-1-data-v-e4cdeb04;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(2) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-2-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-2-data-v-e4cdeb04;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(3) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-3-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-3-data-v-e4cdeb04;
+}
+.scaling-squares-spinner .square.data-v-e4cdeb04:nth-child(4) {
+      -webkit-animation-name: scaling-squares-spinner-animation-child-4-data-v-e4cdeb04;
+              animation-name: scaling-squares-spinner-animation-child-4-data-v-e4cdeb04;
+}
+@-webkit-keyframes scaling-squares-animation-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+}
+100% {
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+}
+}
+@keyframes scaling-squares-animation-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+}
+100% {
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-1-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,150%) scale(2,2);
+                transform: translate(150%,150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-1-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,150%) scale(2,2);
+                transform: translate(150%,150%) scale(2,2);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-2-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,150%) scale(2,2);
+                transform: translate(-150%,150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-2-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,150%) scale(2,2);
+                transform: translate(-150%,150%) scale(2,2);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-3-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,-150%) scale(2,2);
+                transform: translate(-150%,-150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-3-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(-150%,-150%) scale(2,2);
+                transform: translate(-150%,-150%) scale(2,2);
+}
+}
+@-webkit-keyframes scaling-squares-spinner-animation-child-4-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,-150%) scale(2,2);
+                transform: translate(150%,-150%) scale(2,2);
+}
+}
+@keyframes scaling-squares-spinner-animation-child-4-data-v-e4cdeb04 {
+50% {
+        -webkit-transform: translate(150%,-150%) scale(2,2);
+                transform: translate(150%,-150%) scale(2,2);
+}
+}
+
+.report_warpper.data-v-18cd96a4{
+		height:calc(100vh - 44px);
+}
+.seaerch_warpper.data-v-18cd96a4{
+		height: 40px;
+		padding: 8px 10px;
+		border-bottom: 1px solid #ECECEC;
+		/* display: flex; */
+}
+.search_input.data-v-18cd96a4{
+		display: flex;
+}
+.search.data-v-18cd96a4{
+		flex: 5;
+}
+.calendar_icon.data-v-18cd96a4{
+	flex:1;
+	margin: 0 auto;
+}
+.main.data-v-18cd96a4{
+	height: calc(100% - 36px);
+	overflow: auto;
+}
+.data-v-18cd96a4 .u-collapse-item__content__text  {
+	padding: 10px 5px;
+}
+.main_table_header.data-v-18cd96a4{
+	height: 30px;
+	background-color: #e6e6e6;
+	line-height: 30px;
+}
+.main_table_header.data-v-18cd96a4{
+	display: flex;
+	border: 1px solid #e6e6e6;
+}
+.main_table_header>view.data-v-18cd96a4{
+	text-align: center;
+	font-size: 10px;
+}
+.main_table_body>view.data-v-18cd96a4{
+	padding: 4px 0;
+	text-align: center;
+}
+.main_table_body.data-v-18cd96a4{
+	border-top: none;
+}
+.main_table_body_tr view.data-v-18cd96a4:nth-child(2n-1){
+	background-color: #eee;
+}
+.predictDate.data-v-18cd96a4{
+	flex: 2 !important;
+}
+.remark.data-v-18cd96a4{
+	background-color: #eee;
+	padding: 4px 0;
+	text-align: left;
+	text-indent: 1em;
+}
+.table_header.data-v-18cd96a4{
+	font-size: 14px;
+	background-color: #eee;
+	height: 45px;
+	line-height: 45px;
+}
+.table_main.data-v-18cd96a4{
+	height: 40px;
+	line-height: 40px;
+}
+.table_header.data-v-18cd96a4,
+.table_main.data-v-18cd96a4{
+	display: flex;
+	border-bottom: 1px solid #eee;
+}
+.table_header view.data-v-18cd96a4,
+.table_main view.data-v-18cd96a4{
+	flex: 1 ;
+	text-align: center;
+}
+.main .all.data-v-18cd96a4{
+	flex: 0 0 150px;
+}
+.search >view.data-v-18cd96a4{
+			height: 40px;
+			line-height: 40px;
+}
+

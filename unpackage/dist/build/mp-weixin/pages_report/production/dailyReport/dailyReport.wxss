@@ -1,0 +1,1 @@
+.search{margin:5px}.button{display:flex}.date{display:flex;margin:10px}.table{font-size:24rpx}.wrap{padding:12px}.demo-layout{height:35px;line-height:35px;text-align:center;color:#fff}.lin:nth-child(odd){background-color:#ecf5ff}.tr{background-color:#3c9cff}.td{color:#333}

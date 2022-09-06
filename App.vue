@@ -1,0 +1,45 @@
+<script>
+	export default {
+		onLaunch: function() {
+			// console.log('App Launch')
+		},
+		onShow: function() {
+			uni.hideTabBar()
+			// console.log('App Show')
+		},
+		onHide: function() {
+			// console.log('App Hide')
+		},
+			// methods: {
+			// 		disconnected() {
+			// 			console.log('disconnected');
+			// 		},
+			// 		connected() {
+			// 			console.log('connected');
+			// 		},
+			// 		retry() {
+			// 			console.log('retry');
+			// 		}
+			// 	},
+	}
+</script>
+
+<style lang="scss">
+@import "uview-ui/index.scss";
+
+ /deep/ .u-tabbar__content{
+	background: #F6F6F1 !important;
+	border-top: 1px solid #eee;
+}
+body, html{
+	overflow: hidden;
+	
+}
+uni-page-body{
+	height: 100%;
+}
+uni-page{
+	height: 100vh;
+	overflow: hidden;
+}
+</style>

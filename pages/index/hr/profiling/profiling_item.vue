@@ -1,0 +1,128 @@
+<template>
+	<view class="warpper">
+		<view>
+			<image  :src="require('static/HR/top.png')" class="logImg" style="width:100%;height: 70px;"></image>
+        </view>
+		<view style="height:120px;position: absolute;top: 70px;text-indent: 1em;">
+			<image  :src="require('static/img/login/gdx.png')" class="logImg" style="width:120px;height:90px;position:absolute;text-indent: 1em;"></image>
+		</view>
+		<view style="margin-top: 80px;">
+			<view class="Avatar" style="height: 148px;">
+				<image v-if="prposData.sex=='男'"  :src="require('static/HR/sex_man.png')" class="logImg" style="width:148px;height:148px;"></image>
+				<image v-if="prposData.sex=='女'"  :src="require('static/HR/sex_girl.png')" class="logImg" style="width:148px;height:148px;"></image>
+			</view>
+			<view class="userInfo">
+				<view class="userInfo_row">
+					<view class="userInfo_col_icon">
+						<span>工号:</span>
+					</view>
+					<view class="userInfo_col_text">
+						<span class='work_no'>{{prposData.work_no}}</span>
+					</view>
+				</view>
+				<view class="userInfo_row">
+					<view class="userInfo_col_icon">
+						<span>姓名:</span>
+					</view>
+					<view class="userInfo_col_text">
+						<span>{{prposData.user_name}}</span>
+					</view>
+				</view>
+				<view class="userInfo_row">
+					<view class="userInfo_col_icon">
+						<span>部门:</span>
+					</view>
+					<view class="userInfo_col_text">
+						<span>{{prposData.deptkey}}</span>
+					</view>
+				</view>
+				<view class="userInfo_row">
+					<view class="userInfo_col_icon">
+						<span>岗位:</span>
+					</view>
+					<view class="userInfo_col_text">
+						<span>{{prposData.JOB_POSITION}}</span>
+					</view>
+				</view>
+			</view>
+			<view class='remark'>
+				<P>企业微信邀请状态:{{prposData.weCharcode}}</P>
+				<p>注:职员级及以上OA账户默认可以登录</p>
+				<p>账户:工号,密码:gdxcn123</p>
+			</view>
+			<view></view>
+		</view>
+		<view></view>
+	</view>
+</template>
+<script>
+	export default{
+		components:{},
+		data(){
+			return{
+				prposData:{}
+			}
+		},
+		onLoad: function (option) { //option为object类型，会序列化上个页面传递的参数
+				this.prposData=option
+			},
+		mounted() {
+			
+		},
+		methods:{
+			
+		},
+	}
+</script>
+<style scoped lang='less'>
+	.warpper{
+		height: 100vh;
+		overflow: hidden;
+		
+	}
+	.Avatar{
+		text-align:center;
+	}
+	.userInfo svg{
+		height: 36px;
+		width: 36px;
+	}
+	.userInfo_icon{
+		text-align: right;
+	}
+	.userInfo_row{
+		display: flex;
+		>view{
+			min-height: 36px;
+			line-height: 36px;
+			padding: 5px 0;
+		}
+		.userInfo_col_icon{
+			flex: 2;
+			text-align: right;
+			>span{
+				font-size: 22px;
+				font-weight: 600;
+			}
+		}
+		.userInfo_col_text{
+			flex: 3;
+			.work_no{
+				font-size: 28px;
+				font-weight: 600;
+			}
+			>span{
+				margin-left: 18px;
+				font-size: 18px;
+			}
+			
+		}
+	}
+	.remark{
+		padding-top: 50px;
+		text-indent: 1em;
+		position: fixed;
+		bottom: 0;
+		padding-bottom: 30px;
+	}
+</style>

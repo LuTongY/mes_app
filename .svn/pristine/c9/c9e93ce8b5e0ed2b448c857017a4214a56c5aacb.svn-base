@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "现金流量表",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "gdx-table": "/components/gdx-table/gdx-table"
+  }
+}

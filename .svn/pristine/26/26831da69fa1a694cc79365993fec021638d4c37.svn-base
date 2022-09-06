@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "image-tools": "^1.4.0",
+    "jweixin-module": "^1.6.0"
+  }
+}

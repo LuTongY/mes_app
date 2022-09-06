@@ -1,0 +1,73 @@
+<template>
+	<u-tabbar
+		:value="value1"
+		@change="change1"
+		:fixed="true"
+		:border="true"
+		:placeholder="false"
+		:safeAreaInsetBottom="false"
+	>
+	<template v-for="(item,index) in tabbarData">
+		<u-tabbar-item :text="item.title"  v-if="item.isShow == 0">
+			<image
+					class="u-page__item__slot-icon"
+					slot="active-icon"
+					:src="require('../../static/tabbar/fill_'+item.icon)"
+					>
+			</image>
+			<image
+					class="u-page__item__slot-icon"
+					slot="inactive-icon"
+					:src="require('../../static/tabbar/'+item.icon)"
+			></image>
+		</u-tabbar-item>
+	</template>
+	</u-tabbar>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				tabbarData:[],
+				value1:this.$store.state.tabbarIndex,
+			}
+		},
+		mounted() {
+			this.tabbarData=JSON.parse(uni.getStorageSync('menu')).menus || []
+		},
+		methods:{
+			change1:function(index){
+				uni.setStorageSync('tabbarIndex',index);
+				this.$store.dispatch('updateTabbarIndex',index);
+				uni.switchTab({
+					url:this.tabbarData[index].path,
+					animationType: 'none',
+					// animationDuration:50,
+				})		
+			},
+		},
+		
+	}
+</script>
+<style scoped>
+	.u-tabbar /deep/.u-tabbar__content {
+		background-color: #F6F6F8!important
+	}
+	.u-tabbar .u-tabbar__content{
+       background-color: #F6F6F9!important
+	}
+/* 	.u-tabbar__content{
+		background-color: #F6F6F7!important
+	} */
+	image{
+		width: 20px;
+		height: 20px;
+	}
+	/deep/.u-tabbar-item__text{
+		font-weight: 600;
+	}
+	.u-tabbar-item__text{
+		font-weight: 600;
+	}
+</style>

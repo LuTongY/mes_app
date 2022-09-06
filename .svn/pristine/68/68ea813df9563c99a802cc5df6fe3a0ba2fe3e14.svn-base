@@ -1,0 +1,99 @@
+
+.seaerch_warpper.data-v-45ac12b8{
+	height: 37px;
+	padding: 8px 10px;
+	border-bottom: 1px solid #ECECEC;
+	display: flex;
+}
+.calendar_icon.data-v-45ac12b8{
+	flex:1;
+	margin: 0 auto;
+}
+.search.data-v-45ac12b8{
+	flex: 5;
+}
+.tableHead.data-v-45ac12b8,
+.tableMain.data-v-45ac12b8,
+.tableFoot.data-v-45ac12b8{
+	width: 94%;
+	margin: 0 auto;
+	display: flex;
+}
+._table.data-v-45ac12b8{
+	border: 1px solid #ccc;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+._thead > ._tr.data-v-45ac12b8,
+._tfoot > ._tr.data-v-45ac12b8{
+    height: 30px;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+._td.data-v-45ac12b8{
+	word-wrap:break-word;
+	word-break:break-all;
+}
+.tableFoot.data-v-45ac12b8,
+.tableHead.data-v-45ac12b8{
+	/* padding: 5px 0; */
+	min-height: 35px;
+	text-align: center;
+	background-color: #f2f2f2;
+	line-height: 30px;
+}
+.tableMain.data-v-45ac12b8{
+	height: 78vh;
+	overflow: auto;
+}
+.tableMain_f.data-v-45ac12b8{
+	display: flex;
+	flex-wrap:wrap-reverse
+}
+.tableMain_f view.data-v-45ac12b8{
+	min-height: 35px;
+	word-wrap:break-word;
+	border-left: 1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	flex-grow: 0;
+	flex-shrink: 0;
+	word-break: normal;
+	flex-wrap: nowrap;
+	font-size: 12px;
+}
+.tableHead view.data-v-45ac12b8,
+.tableFoot view.data-v-45ac12b8{
+	height: auto;
+	border-left: 1px solid #ccc;
+	flex-grow: 0;
+	flex-shrink: 0;
+	word-break: normal;
+	flex-wrap: nowrap;
+	word-wrap:break-word;
+}
+.tableFoot view.data-v-45ac12b8{
+	font-size: 10px;
+}
+.tableHead view.data-v-45ac12b8:first-child,
+.tableFoot view.data-v-45ac12b8:first-child{
+	border-left: none;
+}
+.tableMain_f view.data-v-45ac12b8:last-child{
+	border-right: 1px solid #ccc;
+}
+.tableMain_f view.data-v-45ac12b8:not(:first-child){
+	text-align: right;
+}
+/* .tableMain_f view::after{
+	content: '';
+	display: block;
+	 position: absolute;
+	    width: 1px;
+	    height: 100%;
+	    border-right: 1px solid #ccc;
+	    background-color: #ccc;
+	    top: 0;
+	    right: 0;
+} */
+

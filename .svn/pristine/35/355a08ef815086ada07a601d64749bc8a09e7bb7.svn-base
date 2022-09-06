@@ -1,0 +1,259 @@
+<template>
+	<view class="warpper">
+	<view class="seaerch_warpper">
+		<view class="calendar_icon">
+			<view style="width: 40px;height: 40px;margin: 0 auto;">
+				<u-icon  size="40" name="calendar" @click="popupShow=true"></u-icon>
+			</view>
+		</view>
+		<view class="search">
+			 <text style="font-size: 18px;font-weight: 600;margin-left: -60px;">{{form.startTimeLabel+'—'+form.endTimeLabel}}</text>  
+		</view>
+		<view>
+		     <u-popup :show="popupShow" mode="center" :round="10"   @close="popupClose">
+				   <view class="timeWarpper">
+		             	<u--form labelPosition="left" :model="form" ref="form1">
+						<u-form-item label="开始日期" borderBottom ref="item1" labelWidth='80' @click='pickerStartTime=true'>
+							<u--input
+													v-model="form.startTimeLabel"
+													disabled
+													disabledColor="#ffffff"
+													placeholder="请选择开始日期"
+													border="none"
+											></u--input>
+											<u-icon
+													slot="right"
+													name="arrow-right"
+											></u-icon>
+						</u-form-item>
+						<u-form-item label="结束日期" borderBottom ref="item1" labelWidth='80' @click='pickerEndTime=true'>
+							<u--input
+													v-model="form.endTimeLabel"
+													disabled
+													disabledColor="#ffffff"
+													placeholder="请选择结束日期"
+													border="none"
+											></u--input>
+											<u-icon
+													slot="right"
+													name="arrow-right"
+											></u-icon>
+						</u-form-item>
+						<u-form-item >
+								<u-button text="查询" type="primary" @click="GetList"></u-button>
+						</u-form-item>
+						</u--form>
+				</view>
+		     </u-popup>
+			   <u-datetime-picker  :show="pickerStartTime"   v-model="form.startDate"  mode="date" @cancel="pickerStartTime=false" @confirm="dateConfirm($event,'pickerStartTime','startTimeLabel')"></u-datetime-picker>
+			   <u-datetime-picker  :show="pickerEndTime"   v-model="form.endDate"  mode="date" @cancel="pickerEndTime=false" @confirm="dateConfirm($event,'pickerEndTime','endTimeLabel')"></u-datetime-picker>
+			<!--  <u-picker :show="pickerStartTime" :columns="pickerStartTimeColumn"  @cancel="pickerStartTime=false" @confirm="StartTimeConfirm"></u-picker> -->
+		</view>
+		
+	</view>
+	 <view class="table_main">
+		 <view class="table_header">
+				  <view class="header_th cMemo">组别</view>
+				  <view class="header_th csocode">销售订单</view>
+				  <view class="header_th cInvName">型号</view>
+				  <view class="header_th iQuantity">数量</view>
+		 </view>
+		 <view class="table_body">
+			<template v-for="(item,keys,index) in data">
+			    <view class="table_body_header_tr">
+					<view class="table_body_header_td">{{keys}}</view>
+				</view>
+			    <view v-for="(c_item,c_index) in item" class="table_body_tr_main">
+					<view class='cMemo'>{{c_item.cMemo?c_item.cMemo.substring(0,c_item.cMemo.indexOf('_')):''}}</view>
+					<view class='csocode'>{{c_item.csocode+'-'+c_item.isoseq}}</view>
+					<view class='cInvName'>{{c_item.cInvName}}</view>
+					<view class='iQuantity'>{{parseFloat(c_item.iQuantity)}}</view>
+				</view>
+			    <view class="table_body_tr_footer">
+					<view class='cMemo'>小计:</view>
+					<view class='csocode'></view>
+					<view class='cInvName'></view>
+					<view class='iQuantity'>{{subtotal[keys]}}</view>
+				</view>
+		   </template> 
+		 </view>
+		 <view class="table_footer">
+			 <view class='cMemo'>合计:</view>
+			 <view class='csocode'></view>
+			 <view class='cInvName'></view>
+			 <view class='iQuantity'>{{subtotal['all']}}</view>
+		 </view>	
+	 </view>
+		<loading :load="loading"></loading>
+	</view>
+
+		
+</template>
+
+<script>
+	export default{
+		data() {
+			return {
+				loading:false,
+				table_load:false,
+				Qtys: 0,
+				QualifiedInQtys: 0,
+				current: 0,
+				data: [],
+				form:{
+					startDate:Number(new Date()),
+					endDate:Number(new Date()),
+					startTimeLabel:this.$moment().format('YYYY-MM-DD'),
+					endTimeLabel:this.$moment().format('YYYY-MM-DD'),
+				},
+				popupShow:false,
+				pickerStartTime:false,
+				pickerEndTime:false,
+			}
+		},
+		computed:{
+			subtotal(){
+				let sum={all:0};
+				for(let key in this.data){
+					this.data[key].forEach(item=>{
+						sum[key]=sum[key] || 0;
+						sum[key] +=parseFloat(item.iQuantity)
+					})
+					sum['all'] +=sum[key]
+				}
+				return sum;
+			}
+		},
+		mounted() {
+			this.GetList();
+		},
+		methods:{
+			GetList(data){
+				this.popupShow=false;
+				this.loading=true;
+				let obj={
+					'search[startDate]':this.form.startTimeLabel,
+					'search[endDate]'  :this.form.endTimeLabel,
+				}
+				this.$Api.report.store.storageGetList(obj).then((res)=>{
+					if(res.data.code==200){
+						this.data=res.data.data.rows || [];
+					}
+					this.loading=false;
+				})
+			},
+			dateConfirm(value,name,labelName){
+				this.form[labelName]=this.$moment(value.value).format('YYYY-MM-DD')
+				this[name]=false;
+			},
+			popupClose(){
+					this.popupShow=false;
+					this.pickerStartTime=false;
+					this.pickerShow=false;
+			}
+		
+		},
+	}
+</script>
+
+<style scoped lang="less">
+	*{
+		font-family: '微软雅黑';
+	}
+	.warpper{
+		height: 100vh;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		.seaerch_warpper{
+			flex: 0 0 37px;
+			padding: 8px 10px;
+			border-bottom: 1px solid #ECECEC;
+			display: flex;
+		}
+		.table{
+			flex: 1;
+			overflow: hidden;
+			padding: 5px 0;
+		}
+	}
+	.calendar_icon{
+		flex:1;
+		margin: 0 auto;
+	}
+	.search{
+		flex: 5;
+		text-align: center;
+		line-height: 40px;
+		
+	}
+	.timeWarpper{
+		width: 68vw;
+		padding: 8vw;
+	}
+	.table_main{
+		display:flex;
+		flex:1;
+		flex-direction:column;
+		overflow: auto;
+		.table_header{
+			padding:5px 0;
+			display:flex;
+			flex: 0 0 30px;
+			line-height:30px;
+			color:#fff;
+			background:#5189D2;
+			text-align:center;
+		}
+		.table_body{
+			flex:1;
+			overflow:auto;
+			.table_body_header_tr{
+				height:30px;
+				line-height:30px;
+				color:#fff;
+				background:#5189D2;
+				text-indent:1em;
+				.table_body_header_td{
+					font-weight:600;
+				}	
+			}
+			.table_body_tr_main{
+				display:flex;
+				text-align:center;
+				padding:3px 0;
+				flex:1;
+				word-break: break-all;
+			}
+			.table_body_tr_footer{
+				display:flex;
+				font-weight:600;
+				// flex:0 0 30px;
+				height:30px;
+				line-height:30px;
+			}
+		}
+		.table_footer{
+		    display:flex;
+			flex:0 0 40px;
+			line-height:40px;
+			color:#fff;
+			background:#5189D2;
+		}
+	}
+	.cMemo{
+		flex:0 0 80px;
+	}
+	.csocode{
+		flex:0 0 120px;
+	}
+	.iQuantity{
+		flex:0 0 80px;
+	}
+	.cInvName{
+		flex:1;
+	}
+	.table_body_tr_main:nth-child(2n){
+		background:#E6F3F9;
+	}
+</style>

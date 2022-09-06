@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar",
+    "u-tabbar-item": "/uview-ui/components/u-tabbar-item/u-tabbar-item"
+  }
+}

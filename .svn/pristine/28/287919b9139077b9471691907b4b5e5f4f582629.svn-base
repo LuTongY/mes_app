@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "出纳余额表",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-search": "/uview-ui/components/u-search/u-search",
+    "u-datetime-picker": "/uview-ui/components/u-datetime-picker/u-datetime-picker",
+    "u-empty": "/uview-ui/components/u-empty/u-empty",
+    "loading": "/components/loading/loading"
+  }
+}

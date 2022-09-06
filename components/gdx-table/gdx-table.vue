@@ -1,0 +1,196 @@
+<template>
+		<view class="table_warpper" >
+			<!-- 表头 -->
+			<view class="tableHead">
+				<view v-for="(item,index) in column" :style="[coumentWidth(item)]">{{item.label}}</view>
+			</view>
+			<!-- 表体 -->
+			<view class="tableMain" style="display: block;">
+				<u-empty mode="search" height="320" icon="http://cdn.uviewui.com/uview/empty/car.png"
+					v-if="data.length>0?false:true">
+				</u-empty>
+				<view v-else v-for="(item,index) in data" class="tableMain_f">
+					<view v-for="(c_item,c_key,c_index) in column" :style="[coumentWidth(c_item)]">{{item[c_item.prop]}}</view>
+				</view>
+			</view>
+			<!-- 表尾 -->
+			<view class="tableFoot" style="display: block;">
+				<view v-for="(item,keys,index) in tableFootSum" class="tableMain_f">
+				    <view v-for="(c_item,c_key,c_index) in column" :style="[coumentWidth(c_item)]">{{item[c_item.prop]}}</view>
+				</view>
+			</view>
+		</view>
+</template>
+
+<script>
+	export default {
+		name: "gdx-table",
+		props: {
+			//列名
+			column: {
+				type: Array,
+				default: () => [],
+			},
+			//表格数据
+			data: {
+				type: Array,
+				default: () => []
+			},
+			//汇总列
+			footer:{
+				type:Array,
+				default: () => []
+			}
+
+		},
+		computed:{
+			//计算页脚合并项
+			tableFootSum(){
+				if(this.footer.length>0){return this.footer}
+				let obj={}
+				this.column.forEach((item,index)=>{
+					index==0?obj[item.prop]="汇总":obj[item.prop]='';
+					 if(item.hasOwnProperty("sum") && item.sum==true && index !=0){
+						  if(Array.isArray(this.data)){
+							 this.data.forEach((c_item,c_index)=>{
+								if(obj[item.prop]==''){obj[item.prop]=0}
+							 	obj[item.prop] +=parseFloat(c_item[item.prop] && parseFloat(c_item[item.prop]) != NaN?parseFloat(c_item[item.prop]):0);
+							 }) 
+						  }	
+					 }
+				})
+				return [obj]		
+			}
+		},
+		data() {
+			return {
+				search: '',
+				
+			};
+		},
+		mounted() {
+		},
+		methods: {
+			//处理单元格样式
+			coumentWidth(item) {
+				let style = {
+					'flex': item.width ? "0 0 " + item.width : '1',
+					'text-align':item.textAlign ? item.textAlign :'center',
+				}
+				return style;
+			},
+		},
+	}
+</script>
+
+<style scoped lang="less">
+	.seaerch_warpper {
+		height: 100%;
+		
+		border-bottom: 1px solid #ECECEC;
+		margin-bottom: 3px;
+
+	}
+	.search {
+		padding: 8px 10px;
+		border-bottom: 1px solid #eee;
+	}
+    .table_warpper{
+		flex-direction: column;
+		display: flex;
+		justify-content: space-between;
+		height: 100%;
+	}
+	.tableHead,
+	.tableFoot{
+		width: 98%;
+		margin: 0 auto;
+		display: flex;
+	}
+	.tableFoot,
+	.tableHead{
+		/* padding: 5px 0; */
+		flex: 0 0 35px;
+		min-height: 35px;
+		text-align: center;
+		background-color: #f2f2f2;
+		line-height: 30px;
+	}
+
+	.tableMain {
+		overflow: auto;
+		flex: 1;
+		-webkit-flex:1; 
+		 -webkit-overflow-scrolling:touch;   
+		width: 98%;
+		margin: 0 auto;
+	}
+
+	.tableMain_f {
+		display: -webkit-flex;
+		display: flex;
+		flex-wrap: wrap-reverse;
+	}
+
+	.tableMain_f view {
+		min-height: 35px;
+		line-height: 35px;
+		word-wrap: break-word;
+		border-left: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		flex-grow: 0;
+		flex-shrink: 0;
+		word-break: normal;
+		flex-wrap: nowrap;
+		font-size: 12px;
+		word-break: break-word;
+	}
+
+	.tableHead view,
+	.tableFoot view {
+		height: auto;
+		border-left: 1px solid #ccc;
+		flex-grow: 0;
+		flex-shrink: 0;
+		word-break: normal;
+		flex-wrap: nowrap;
+		word-wrap: break-word;
+		flex: 1;
+	}
+
+	.tableFoot view {
+		font-size: 10px;
+		word-break: break-all;
+	}
+
+	.tableHead view:first-child,
+	.tableFoot view:first-child {
+		// border-left: none;
+	}
+	.tableFoot view:last-child,
+    .tableHead view:last-child,
+	.tableMain_f view:last-child {
+		border-right: 1px solid #ccc;
+	}
+
+	// .tableMain_f view:not(:first-child) {
+	// 	text-align: right;
+	// }
+    .tableFoot{
+		/* position: fixed;
+		bottom: 5px; */
+		width: 98%;
+		margin: 0 1%;
+	}
+	/* .tableMain_f view::after{
+	content: '';
+	display: block;
+	 position: absolute;
+	    width: 1px;
+	    height: 100%;
+	    border-right: 1px solid #ccc;
+	    background-color: #ccc;
+	    top: 0;
+	    right: 0;
+} */
+</style>

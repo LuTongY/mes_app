@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "u-avatar": "/uview-ui/components/u-avatar/u-avatar",
+    "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell": "/uview-ui/components/u-cell/u-cell",
+    "u-modal": "/uview-ui/components/u-modal/u-modal",
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "tabbar": "/components/Tabbar/Tabbar"
+  }
+}

@@ -1,0 +1,10 @@
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["uview-ui/components/u--form/u--form"],{"550d":function(t,e,n){"use strict";(function(t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var u=r(n("e0fa"));function r(t){return t&&t.__esModule?t:{default:t}}var i=function(){Promise.all([n.e("common/vendor"),n.e("uview-ui/components/u-form/u-form")]).then(function(){return resolve(n("a91a"))}.bind(null,n)).catch(n.oe)},a={name:"u-form",mixins:[t.$u.mpMixin,u.default,t.$u.mixin],components:{uvForm:i},created:function(){this.children=[]},methods:{setRules:function(t){this.$refs.uForm.setRules(t)},validate:function(){return this.setMpData(),this.$refs.uForm.validate()},validateField:function(t,e){return this.setMpData(),this.$refs.uForm.validateField(t,e)},resetFields:function(){return this.setMpData(),this.$refs.uForm.resetFields()},clearValidate:function(t){return this.setMpData(),this.$refs.uForm.clearValidate(t)},setMpData:function(){this.$refs.uForm.children=this.children}}};e.default=a}).call(this,n("543d")["default"])},b055:function(t,e,n){"use strict";n.r(e);var u=n("550d"),r=n.n(u);for(var i in u)"default"!==i&&function(t){n.d(e,t,(function(){return u[t]}))}(i);e["default"]=r.a},c9be:function(t,e,n){"use strict";n.r(e);var u=n("f20a"),r=n("b055");for(var i in r)"default"!==i&&function(t){n.d(e,t,(function(){return r[t]}))}(i);var a,o=n("f0c5"),s=Object(o["a"])(r["default"],u["b"],u["c"],!1,null,null,null,!1,u["a"],a);e["default"]=s.exports},f20a:function(t,e,n){"use strict";var u;n.d(e,"b",(function(){return r})),n.d(e,"c",(function(){return i})),n.d(e,"a",(function(){return u}));var r=function(){var t=this,e=t.$createElement;t._self._c},i=[]}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'uview-ui/components/u--form/u--form-create-component',
+    {
+        'uview-ui/components/u--form/u--form-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("c9be"))
+        })
+    },
+    [['uview-ui/components/u--form/u--form-create-component']]
+]);

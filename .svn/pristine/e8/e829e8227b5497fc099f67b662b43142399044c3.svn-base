@@ -1,0 +1,1 @@
+<view><gdx-table vue-id="49a882ce-1" data="{{data}}" column="{{column}}" footer="{{footer}}" bind:__l="__l" vue-slots="{{['default']}}"><view class="_p">123</view><view class="_p">2</view><view class="_p">456456</view></gdx-table></view>

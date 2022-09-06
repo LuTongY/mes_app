@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/index/index_Item",
+    "pages/production/index/index",
+    "pages/production/Report/Report",
+    "pages/production/Report/ReportItem",
+    "pages/frequently/index/index",
+    "pages/report/index/index",
+    "pages/report/dailyStatement/dailyStatement",
+    "pages/report/dailyStatement/dailyStatement_Item",
+    "pages/report/finance/teller/Teller",
+    "pages/report/finance/cashFlow/cashFlow",
+    "pages/report/hr/RecruitmentReport/RecruitmentReport",
+    "pages/report/hr/RecruitmentReport/RecruitmentReport_sum",
+    "pages/report/hr/RecruitmentReport/RecruitmentReport_item",
+    "pages/report/hr/RecruitmentReport/candidateInfo",
+    "pages/home/index/index",
+    "pages/report/dailyReport/dailyReport",
+    "pages/report/dailyReport/dailyReportInfo",
+    "pages/report/dailyReport/getStatList",
+    "pages/report/dailyReport/getStatDetailList"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/frequently/index/index",
+        "text": "常用"
+      },
+      {
+        "pagePath": "pages/report/index/index",
+        "text": "报表"
+      },
+      {
+        "pagePath": "pages/home/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "usingComponents": {
+    "gdx-table": "/components/gdx-table/gdx-table"
+  },
+  "sitemapLocation": "sitemap.json"
+}

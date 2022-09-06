@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "应聘者列表",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-empty": "/uview-ui/components/u-empty/u-empty",
+    "u-collapse": "/uview-ui/components/u-collapse/u-collapse",
+    "u-avatar": "/uview-ui/components/u-avatar/u-avatar",
+    "u--textarea": "/uview-ui/components/u--textarea/u--textarea",
+    "loading": "/components/loading/loading",
+    "u-datetime-picker": "/uview-ui/components/u-datetime-picker/u-datetime-picker"
+  }
+}

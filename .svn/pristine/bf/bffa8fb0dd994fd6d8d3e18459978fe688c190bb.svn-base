@@ -1,0 +1,152 @@
+<template>
+	   <view class="report_warpper">
+	      <view class="seaerch_warpper">
+				<view class="search">
+					<u-search placeholder="请输入招聘人员" v-model="searchFilter"></u-search>
+				</view>
+			<view class="search" style="height: auto;">
+					<view style="display: flex;border-bottom:1px solid rgb(214, 215, 217)" @click="showPopup('start')">
+						<label for="" style="padding-left: 15px;">开始日期:</label>
+						<span style="padding: 0 8px;">{{formatting(search.start)}}</span>
+						<u-icon name="calendar"></u-icon>
+					</view>
+					<view style="display: flex; border-bottom:1px solid rgb(214, 215, 217) ;" @click="showPopup('end')">
+						<label for="" style="padding-left: 15px;">截止日期:</label>
+						<span style="padding: 0 8px;">{{formatting(search.end)}}</span>
+						<u-icon name="calendar"></u-icon>			
+					</view>
+					<!-- 日期弹出框 -->
+					<u-datetime-picker :show="show" :value="search.dateValue" mode="date" @confirm="getDate" @cancel="show=false"></u-datetime-picker>
+			</view>
+				
+	      </view>
+		  <!-- 内容区 -->
+		  <view class="main">
+			  <u-empty
+			           mode="search"
+					   height="320"
+			           icon="http://cdn.uviewui.com/uview/empty/car.png"
+					  v-if="dataFilter.length>0?false:true"
+			  >
+			  </u-empty>
+                  <u-collapse v-else>
+					
+					  <view class="table_header">
+					    <view class="recruiter">招聘人员</view>
+					    <view class="totalResumeNum">简历数</view>
+					    <view class="totalContactCount">沟通数量</view>
+					    <view class="all">电话/微信/总时长(分)</view>
+					 </view>
+				<template v-for="(item,index) in dataFilter">
+					 <view class="table_main" @click="go_item(item)">
+						 <view class="recruiter">{{item.recruiter}}</view>
+						 <view class="totalResumeNum">{{item.totalResumeNum}}</view>
+						 <view class="totalContactCount">{{item.totalContactCount}}</view>
+						 <view class="all">{{item.totalTelDuration+'/'+item.totalWxDuration+'/'+item.totalDuration}}</view>
+					 </view>
+					</template>
+                  </u-collapse>
+		  </view>
+		    <loading :load="loading"></loading>
+	    </view>
+	
+</template>
+
+<script>
+	import loading from "@/components/loading/loading.vue"
+	export default{
+		data(){
+			return{
+				loading:true,
+				monthShow:false,
+				month:Number(new Date()),
+				search:this.$moment().format('YYYY-MM'),
+				searchPopup:false,
+				searchFilter:'',
+				data:[],
+				isEmpty:false,
+				show: false,
+				search: {
+					popupTitle: '',
+					option: '',
+					dateValue: '',
+					date: Number(new Date()),
+					start: Number(new Date()),
+					end: Number(new Date()),
+				},
+				Data: {},
+			}
+		},
+		computed:{
+			dataFilter(){
+				let list = [];
+				let ListObjct={};
+				if(!this.searchFilter){
+					list=this.data;
+				}else{
+					this.data.forEach((item,index)=>{
+						if(item.recruiter.indexOf(this.searchFilter)> -1){
+							list.push(item)
+						}
+					})
+				}
+				return list	  
+			},
+		},
+		onLoad: function(option) { //option为object类型，会序列化上个页面传递的参数
+			option.userName=option.hasOwnProperty('userName')?option.userName:0;
+			uni.setStorageSync('userName',option.userName)
+		},
+		mounted() {
+			this.GetList();
+		},
+		methods:{
+			GetList(data){
+				this.monthShow=false;
+				this.loading=true;	
+				let obj = {
+					'search[date][0]': this.formatting(this.search.start),
+					'search[date][1]': this.formatting(this.search.end),
+				};
+				this.$Api.report.hr.CandidateContact.GetStatList(obj).then((res)=>{
+					if(res.data.code==200){
+							this.data=res.data.data
+							this.data?"":this.data=[];
+						
+					}
+				this.loading=false;
+				})
+			},
+			go_item(data){
+				uni.navigateTo({
+					url:"/pages/report/hr/RecruitmentReport/RecruitmentReport_item?adminId="+data.adminId+"&start="+this.formatting(this.search.start)+"&end="+this.formatting(this.search.end),
+				})
+			},
+			showPopup: function(date) {
+				this.show = true;
+				if (date == 'start') {
+					this.search.popupTitle = '起始日期';
+					this.search.dateValue = this.search.start
+					this.search.option = 'start';
+				} else if (date == 'end') {
+					this.search.popupTitle = '截止日期';
+					this.search.dateValue = this.search.end;
+					this.search.option = 'end';
+				}
+			},
+			getDate: function(obj) {
+				this.$set(this.search, this.search.option, obj.value)
+				this.$forceUpdate()
+				this.show = false;
+				this.GetList()
+			},
+			formatting: function(date) {
+				return this.$moment(date).format('YYYY-MM-DD')
+			},
+		}
+	}
+</script>
+
+<style scoped>
+ @import url("./css/RecruitmentReport.css");
+</style>

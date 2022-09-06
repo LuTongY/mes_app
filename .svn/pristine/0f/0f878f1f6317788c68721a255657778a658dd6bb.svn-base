@@ -1,0 +1,124 @@
+<template>
+	     <view id='dailyStatement'>
+	            <view class="search">
+	                <view style="display: flex;border-bottom:1px solid #eee ;">
+	                    <view>
+	                        <label for="">起始日期</label>
+	                        <input type="text" readonly style="width: calc(100% - 80px);padding: 0 8px;" :value="formatting(Date.start)" @click="showPopup('start')">
+	                    </view>
+	                    <view>
+	                        <label for="">截止日期</label>
+	                        <input type="text" readonly style="width: calc(100% - 80px);padding: 0 8px;"  :value="formatting(Date.end)" @click="showPopup('end')">
+	                    </view>
+	                </view>
+	                <view style="display: flex;border-bottom:1px solid #eee ;">
+	                    <view>
+	                        <label for="">部门</label>
+	                        <span></span>
+	                    </view>
+	                </view>
+<!-- 	                <van-popup v-model="DateShow" position="bottom" :style="{ height: '30%' }" @confirm="getDate">
+	                   <van-datetime-picker  v-model="Date.date" type="date" :title="Date.popup_title" @confirm="getDate"/>
+	               </van-popup> -->
+	            </view>
+	       </view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				show: false,
+				value1: Number(new Date()),
+				Date:{
+				            popup_title:'',
+				            option:'',
+				            date:'',
+				            start:new Date(),
+				            end: new Date(),
+				            },
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+    page_list: function() {
+		  if(!this.Date.start || !this.Date.end){
+			this.$message.error("请填写日期");
+			return false;
+		   }
+		else if(!this.Date.start>!this.Date.end){
+			this.$message.error("起始日期不能大于截至日期");
+			return false;
+        };
+        let that=this;
+        let data={reportDate:{
+            reportDate:[this.Date.start,this.Date.end],
+        }}
+        $.post('http://192.168.60.190:8086/trade/daily/get-list',data,function(){
+
+        })
+    //   this.api.trade.dailyStatement.GetList(this.search).then(res => {
+    //     if(res.data.code==200){
+	// 		this.iData=res.data.data
+	// 		this.filtration();
+	// 		this.getDept();
+	// 		for(let obj in this.Data.listData){
+	// 			this.colspan += this.Data.listData[obj]['users'].length
+	// 		}  
+    //     }else{
+    //     this.$message.error(res.data.message)}
+        
+    //   });
+    },
+            showPopup:function(date){
+                this.DateShow=true;
+                if(date == 'start'){
+                    this.Date.popup_title='起始日期';
+                    this.Date.date=this.Date.start
+                    this.Date.option='start';
+                }else if(date == 'end'){
+                    this.Date.popup_title='截止日期';
+                    this.Date.date=this.Date.end;
+                    this.Date.option='end';
+                }
+            },
+            formatting:function(date){
+                return moment(date).format('YYYY-MM-DD')
+            },
+            getDate:function(data){
+                this.Date[this.Date.option]=data;
+                this.DateShow=false;
+            }
+		}
+	}
+</script>
+
+<style>
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.logo {
+		height: 200rpx;
+		width: 200rpx;
+		margin-top: 200rpx;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 50rpx;
+	}
+
+	.text-area {
+		display: flex;
+		justify-content: center;
+	}
+
+	.title {
+		font-size: 36rpx;
+		color: #8f8f94;
+	}
+</style>

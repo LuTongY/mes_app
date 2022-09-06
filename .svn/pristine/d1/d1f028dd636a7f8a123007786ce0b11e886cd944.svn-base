@@ -1,0 +1,634 @@
+<template>
+	<view id='dailyStatement'>
+		<view class="search" style="height: auto;">
+			<view style="display: flex;border-bottom:1px solid rgb(214, 215, 217)" @click="showPopup('start')">
+				<label for="" style="padding-left: 15px;">开始日期:</label>
+				<span style="padding: 0 8px;">{{formatting(search.start)}}</span>
+				<u-icon name="calendar"></u-icon>
+			</view>
+			<view style="display: flex; border-bottom:1px solid rgb(214, 215, 217) ;" @click="showPopup('end')">
+				<label for="" style="padding-left: 15px;">截止日期:</label>
+				<span style="padding: 0 8px;">{{formatting(search.end)}}</span>
+				<u-icon name="calendar"></u-icon>
+				
+			</view>
+			<view style="width: 80px;height: 45px;margin: 0 auto;">
+				<u-button type="primary" text="查询" @click="page_list()"></u-button>
+			</view>
+		</view>
+		<view class="main">
+			<u-collapse accordion>
+				<u-collapse-item title="收到询盘邮件情况">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>询盘数量</td>
+								<td class="data">查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.inquiryMail.quantity}}</td>
+								<td @click="go_item(index,'inquiryMail')">
+									<span class='detail' v-if='item.stat.inquiryMail.quantity>0' >详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('inquiryMail','quantity') }}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="发出报价邮件情况">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>发出报价数量</td>
+								<td class="data">查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.quotationMail.quantity}}</td>
+								<td @click="go_item(index,'quotationMail')">
+									<span class='detail' v-if='item.stat.quotationMail.quantity>0' >详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('quotationMail','quantity')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="推荐邮件情况">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>推荐信数量</td>
+								<td class="data">查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.recommendMail.quantity}}</td>
+								<td @click="go_item(index,'recommendMail')">
+									<span class='detail' v-if='item.stat.recommendMail.quantity>0' >详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('recommendMail','quantity')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="正常业务往来邮件发出数量">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>正常业务往来邮件发出数量</td>
+								<td>查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.otherMail.bussMailNum}}</td>
+								<td @click="go_item(index,'otherMail','bussMailNum')">
+									<span class='detail' v-if='item.stat.otherMail.bussMailNum>0'>详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{ total('otherMail','bussMailNum')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="合计每天发出邮件数量">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>合计每天发出邮件数量</td>
+								<td>查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.otherMail.totalMailNum}}</td>
+								<td @click="go_item(index,'otherMail','totalMailNum')">
+									<span class='detail' v-if='item.stat.recommendMail.quantity>0' >详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('otherMail','totalMailNum')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="电话沟通情况">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>拨出电话个数</td>
+								<td>查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.telContact.quantity}}</td>
+								<td @click="go_item(index,'telContact')">
+									<span class='detail' v-if='item.stat.telContact.quantity>0' >详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('telContact','quantity')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="其他社媒沟通情况">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>客户个数</td>
+								<td>查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.media.quantity}}</td>
+								<td @click="go_item(index,'media')">
+									<span class='detail' v-if='item.stat.media.quantity>0' >详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('media','quantity')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="开立U8合同情况" label="点击部门列查看详细情况">
+					<table>
+						<thead>
+							<tr>
+								<td style="width: 30%;">部门</td>
+								<td style="width: 20%;">合同个数</td>
+								<td style="width: 20%;">商品数量</td>
+								<td>金额($)</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td @click="go_item(index,'u8Contract')">{{item.department}}</td>
+								<td>{{item.stat.u8Contract.quantity}}</td>
+								<td>{{item.stat.u8Contract.number}}</td>
+								<td>{{item.stat.u8Contract.amount}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('u8Contract',['quantity','number','amount']).quantity}}</td>
+								<td>{{total('u8Contract',['quantity','number','amount']).number}}</td>
+								<td>{{total('u8Contract',['quantity','number','amount']).amount}}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="开立U8销售订单情况" label="点击部门列查看详细情况">
+					<table>
+						<thead>
+							<tr>
+								<td style="width: 30%;">部门</td>
+								<td style="width: 20%;">商品数量</td>
+								<td>金额($)</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td  @click="go_item(index,'u8SaleOrder')">{{item.department}}</td>
+								<td>{{item.stat.u8SaleOrder.number}}</td>
+								<td>{{item.stat.u8SaleOrder.amount}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('u8SaleOrder',['number','quantity','amount']).number}}</td>
+								<td>{{total('u8SaleOrder',['number','quantity','amount']).amount}}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="出货情况" label="点击部门列查看详细情况">
+					<table>
+						<thead>
+							<tr>
+								<td style="width: 30%;">部门</td>
+								<td style="width: 20%;">商品数量</td>
+								<td>金额($)</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData" >
+								<td @click="go_item(index,'dispatch')">{{item.department}}</td>
+								<td>{{item.stat.dispatch.number}}</td>
+								<td>{{item.stat.dispatch.amount}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('dispatch',['number','quantity','amount']).number}}</td>
+								<td>{{total('dispatch',['number','quantity','amount']).amount}}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="收款情况">
+					<table>
+						<thead>
+							<tr>
+								<td>部门</td>
+								<td>金额</td>
+								<td>查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.receiptBill.amount}}</td>
+								<td @click="go_item(index,'receiptBill')">
+									<span class='detail' v-if='item.stat.receiptBill.amount>0'>详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('receiptBill','amount')}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="在谈订单情况">
+					<table>
+						<thead>
+							<tr>
+								<td class="deptName">部门</td>
+								<td>数量</td>
+								<td>金额</td>
+								<td>查看</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in Data.listData">
+								<td>{{item.department}}</td>
+								<td>{{item.stat.oppOrder.quantity}}</td>
+								<td>{{item.stat.oppOrder.amount}}</td>
+								<td @click="go_item(index,'oppOrder')">
+									<span class='detail' v-if='item.stat.oppOrder.quantity>0'>详细</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>总计</td>
+								<td>{{total('oppOrder',['quantity','number','amount']).quantity}}</td>
+								<td>{{total('oppOrder',['quantity','number','amount']).amount}}</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="其他工作汇报">
+					<table>
+						<thead>
+							<tr>
+								<td style="width: 80px;">姓名</td>
+								<td>事项</td>
+							</tr>
+						</thead>
+						<tbody>
+						  <template v-for="(item,index) in Data.listData">
+							  <template v-for="(users,userIndex) in item.users">
+								  <tr v-for="(other,otherIndex) in users.other">
+								  			 <td>{{users.name}}</td>
+								  			<td style="text-align: left;">{{other.workOther}}</td>
+								  </tr>
+							  </template>
+						   </template>	
+						</tbody>
+					</table>
+				</u-collapse-item>
+				<u-collapse-item title="需协助处理工作提报">
+					<table>
+						<thead>
+							<tr>
+								<td style="width: 80px;">姓名</td>
+								<td>事项</td>
+							</tr>
+						</thead>
+						<tbody>
+						  <template v-for="(item,index) in Data.listData">
+							  <template v-for="(users,userIndex) in item.users">
+								  <tr v-for="(other,otherIndex) in users.other">
+								  		<td v-if='other.workAssist'>{{users.name}}</td>
+								  		<td style="text-align: left;" v-if='other.workAssist'>{{other.workAssist}}</td>				  							
+								  </tr>
+							  </template>
+							 
+						   </template>	
+						</tbody>
+					</table>
+				</u-collapse-item>
+			</u-collapse>
+		</view>
+		<!-- 日期弹出框 -->
+		<u-datetime-picker :show="show" :value="search.dateValue" mode="date" @confirm="getDate" @cancel="show=false">
+		</u-datetime-picker>
+		<!-- 部门弹出框 -->
+
+		<u-popup :show="department" @close="department=false" mode="center">
+			<view style="height: auto;padding:30px 50px;border-radius: 12px;" class="dept">
+				<u-checkbox-group v-model="checkboxValue" placement="column">
+					<u-checkbox label="全部" :name="0" :customStyle="{marginBottom: '12px'}"> </u-checkbox>
+					<u-checkbox :customStyle="{marginBottom: '12px'}" v-for="(item, index) in selectData"
+						:key="item.value" :label="item.label" :name="item.value">
+					</u-checkbox>
+				</u-checkbox-group>
+				<view style="display: flex;padding-top:20px ;">
+					<u-button text="取消" style="margin-right: 20px;" @click="()=>{department=false}"></u-button>
+					<u-button type="primary" text="确定"></u-button>
+				</view>
+			</view>
+		</u-popup>
+        <loading :load="loading"></loading>
+	</view>
+</template>
+
+<script>
+	import loading from "@/components/loading/loading.vue"
+	export default {
+		data() {
+			return {
+				loading:true,
+				show: false,
+				department: false,
+				checkboxValue: [],
+				searchData: {
+					reportDate: [this.$moment().format('YYYY-MM-DD'), this.$moment().format('YYYY-MM-DD')],
+				},
+				search: {
+					popupTitle: '',
+					option: '',
+					dateValue: '',
+					date: Number(new Date()),
+					start: Number(new Date()),
+					end: Number(new Date()),
+				},
+				selectData: [],
+				changeSelect: [],
+				Data: {},
+				iData: [],
+			}
+		},
+		onLoad() {
+
+		},
+		mounted() {
+			this.page_list();
+		},
+		methods: {
+			//过滤
+			filtration() {
+				this.Data.listData = {};
+				if (this.changeSelect.length > 0) {
+					this.changeSelect.forEach((item, index) => {
+						this.Data.listData[item] = this.iData.listData[item]
+					})
+
+				} else {
+					this.Data = this.iData;
+				}
+			},
+			page_list: function() {
+				this.loading=true;
+				let obj = {
+					'search[reportDate][0]': this.formatting(this.search.start),
+					'search[reportDate][1]': this.formatting(this.search.end),
+					'isMobile': 1,
+				};
+				this.$Api.report.dailyStatement.GetMobileList(obj).then(res => {
+                    this.loading=false;
+					this.iData = res.data.data
+					this.getDept();
+					this.filtration();
+				})
+			},
+			//个人合计
+			totalSumAll(data, field) {
+				let totalSumAll = 0;
+				for (let obj in data) {
+					if (parseFloat(data[obj][field]) > 0) {
+						totalSumAll += ((parseFloat(data[obj][field] * 100)).toFixed(2) - 0)
+					}
+				}
+				return totalSumAll / 100;
+			},
+			//总计
+			total(name, field) {
+				let data = this.Data.listData;
+				let sum;
+				if (typeof field == 'string') {
+					sum = 0;
+					for (let key in data) {
+						sum += data[key].stat[name][field]
+					}
+				} else {
+					sum = {}
+					field.forEach((item) => {
+						sum[item] = 0;
+					})
+					for (let key in data) {
+						for (let sumKey in sum) {
+							sum[sumKey] += ((parseFloat(data[key].stat[name][sumKey] * 100)).toFixed(2) - 0)
+						}
+					}
+					for (let sumKey in sum) {
+						sum[sumKey] = sum[sumKey] / 100
+					}
+				}
+
+				return sum
+			},
+			showPopup: function(date) {
+				this.show = true;
+				if (date == 'start') {
+					this.search.popupTitle = '起始日期';
+					this.search.dateValue = this.search.start
+					this.search.option = 'start';
+				} else if (date == 'end') {
+					this.search.popupTitle = '截止日期';
+					this.search.dateValue = this.search.end;
+					this.search.option = 'end';
+				}
+				console.log(date);
+			},
+			formatting: function(date) {
+				return this.$moment(date).format('YYYY-MM-DD')
+			},
+			getDate: function(obj) {
+				// this.$set(this.Date,this.Date.option,this.$moment(obj.value).format('YYYY-MM-DD'))
+				this.$set(this.search, this.search.option, obj.value)
+				console.log(this.search);
+				this.$forceUpdate()
+				this.show = false;
+			},
+			//获取部门列表
+			getDept() {
+				this.selectData = [];
+				for (let key in this.iData.listData) {
+					let obj = {
+						label: this.iData.listData[key].department,
+						value: key
+					};
+					this.selectData.push(obj);
+				}
+			},
+			go_item(index,category,key){
+				uni.navigateTo({
+				    url: '/pages/report/dailyStatement/dailyStatement_Item'
+				});
+				this.Data.listData[index].category=category;
+				if(key){this.Data.listData[index].key=key;}
+				setTimeout(()=>{
+					uni.$emit('dailyStatementItem_getData', {msg: this.Data.listData[index]});
+				},100)
+				
+			}
+		}
+	}
+</script>
+
+<style lang='scss'>
+	.deptName{
+		width: 30%;
+		min-width: 110px;
+	}
+	.data{
+		width: 22%;
+		min-width: 80px;
+	}
+	.detail{
+		padding:2px 16px;
+		display: inline-block;
+		background-color: #3c9cff;
+		color: #fff;border-radius: 5px;
+		/* width: 20%; */
+	}
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.logo {
+		height: 200rpx;
+		width: 200rpx;
+		margin-top: 200rpx;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 50rpx;
+	}
+
+	.text-area {
+		display: flex;
+		justify-content: center;
+	}
+
+	.title {
+		font-size: 36rpx;
+		color: #8f8f94;
+	}
+
+	.search {
+		>view {
+			height: 45px;
+			line-height: 45px;
+		}
+	}
+
+	table {
+		table-layout: fixed;
+		border-collapse: collapse;
+		width: 100%;
+		border: 1px solid #e6e6e6;
+		min-height: 25px;
+		line-height: 25px;
+		text-align: center;
+		border-collapse: collapse;
+		padding: 2px;
+	}
+
+	table,
+	table tr th,
+	table tr td {
+		border: 1px solid #e6e6e6;
+		height: 35px;
+	}
+
+	tfoot td,
+	thead td {
+		background: #fafafa;
+		font-size: 14px;
+		
+	}
+	.u-button /deep/{
+		height: 35px;
+		line-height: 35px;
+		margin-top: 7px;
+	} 
+</style>

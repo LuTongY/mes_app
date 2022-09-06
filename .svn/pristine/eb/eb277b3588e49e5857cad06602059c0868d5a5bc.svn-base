@@ -1,0 +1,18 @@
+<template>
+	<view>	
+	         <p>常用</p>
+			<Tabbar />
+	</view>
+</template>
+
+<script>
+import Tabbar from "@/components/Tabbar/Tabbar.vue"
+ export default{
+	comments:{
+		Tabbar, 
+	},
+}
+</script>
+
+<style>
+</style>

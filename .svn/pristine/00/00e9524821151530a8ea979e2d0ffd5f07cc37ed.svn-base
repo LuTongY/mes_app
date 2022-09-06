@@ -1,0 +1,307 @@
+<template>
+	<view class="warpper">
+		<u--form labelPosition="left"  :model="formData"  :rules="rules" ref="form" borderBottom labelWidth='70px'>
+			<u-form-item label="姓名" borderBottom  required prop="user_name">
+						<u--input	v-model="formData.user_name" :readonly="true" ></u--input>
+						<u-icon  	slot="right" name="camera-fill"	size="32" @click="getUser"></u-icon>
+			</u-form-item>
+			<u-form-item label="部门" borderBottom @click='deptpickershow=true'  required prop="deptkey">
+						<u--input	v-model="formData.deptkey"	disabled disabledColor="#ffffff"></u--input>
+						<u-icon		slot="right"	name="arrow-right"></u-icon>
+						<u-picker :show="deptpickershow" ref="uPicker"  :columns="deptpickerColumns" @confirm="deptconfirm" @cancel="deptpickershow=false" @change="changeHandler" keyName="DEPT_NAME"></u-picker>
+			</u-form-item>
+			<u-form-item label="岗位" borderBottom prop="JOB_POSITION" required>
+						<u--input	v-model="formData.JOB_POSITION"	></u--input>
+			</u-form-item>
+			<u-form-item label="是否为职员" borderBottom labelWidth='90px' required>
+						<u-radio-group 
+						    v-model="formData.isLogin"
+						    placement="row"
+							@change="isLoginChange">
+							<u-radio activeColor="#5c93f4" label="是" :name="1" ></u-radio>
+							<u-radio activeColor="#5c93f4" label="否" :name="0" ></u-radio>
+						</u-radio-group>
+						<span style="color:red">注:非职员不能登录OA</span>
+			</u-form-item>
+			<u-form-item label="OA辅助角色" v-if="isRoleShow" borderBottom labelWidth='90px' required @click='rolePickershow=true' prop='rolekey' >
+						<u--input	v-model="formData.rolekey"	disabled disabledColor="#ffffff"></u--input>
+						<u-icon		slot="right"	name="arrow-right"></u-icon>
+						<u-picker :show="rolePickershow" ref="uPicker"  :columns="rolePickerColumns" @confirm="roleConfirm" @cancel="rolePickershow=false"  keyName="role_name"></u-picker>
+			</u-form-item>
+			<u-form-item label="性别" borderBottom prop='sex' required>
+						<u--input	v-model="formData.sex" readonly ></u--input>
+			</u-form-item>
+			<u-form-item label="民族" borderBottom prop='nation' required>
+						<u--input	v-model="formData.nation" readonly ></u--input>
+			</u-form-item>
+			<u-form-item label="出生" borderBottom prop='birth' required>
+						<u--input	v-model="formData.birth" readonly ></u--input>
+			</u-form-item>
+			<u-form-item label="住址" borderBottom prop='address' required>
+				       <view style="height: 36px;">{{formData.address}}</view>
+			</u-form-item>
+			<u-form-item label="身份证号" borderBottom prop='id_NO' required>
+						<u--input	v-model="formData.id_NO" readonly ></u--input>
+			</u-form-item>
+			<u-form-item label="联系电话" borderBottom prop='Phone' required>
+						<u--input	v-model="formData.Phone"  ></u--input>
+			</u-form-item>
+		</u--form>
+		<u-row style="padding-top:10px ;">
+			<u-col span="12">
+				<u-button type="primary" text="生成工号" @click="submit"></u-button>
+			</u-col>
+		</u-row>
+		
+		<loading :load="loading"></loading>
+		<u-notify ref="uNotify"></u-notify>
+	</view>
+	
+</template>
+<script>
+	import { pathToBase64, base64ToPath } from 'image-tools'
+	export default{
+		components:{},
+		data(){
+			return{
+				deptpickerColumns:[],
+				deptpickercolumnData:[],
+				deptpickershow:false,
+				rolePickershow:false,
+				rolePickerColumns:[[{role_id:'20',role_name:'职员'},{role_id:'4',role_name:'经理'},{role_id:'21',role_name:'总监'}]],
+				isRoleShow:false,
+				loading:false,
+				formData:{
+					'user_name':'',
+					'isLogin':0
+				},
+				access_token:'',
+				imgbase64:'',
+				rules:{
+					'user_name':{
+						type: 'string',
+					    required: true,
+						message: '请填写姓名',
+						trigger: ['blur', 'change'],
+					},
+					'deptkey':{
+						type: 'string',
+					    required: true,
+						message: '请选择部门',
+						trigger: ['blur', 'change'],
+					},
+					'JOB_POSITION':{
+						type: 'string',
+					    required: true,
+						message: '请输入职务',
+						trigger: ['blur', 'change'],
+					},
+					'sex':{
+						type: 'string',
+					    required: true,
+						message: '请输入性别',
+						trigger: ['blur', 'change'],
+					},
+					'nation':{
+						type: 'string',
+					    required: true,
+						message: '请输入民族',
+						trigger: ['blur', 'change'],
+					},
+					'birth':{
+						type: 'string',
+					    required: true,
+						message: '请输入出生年月',
+						trigger: ['blur', 'change'],
+					},
+					'address':{
+						type: 'string',
+					    required: true,
+						message: '请输入住址',
+						trigger: ['blur', 'change'],
+					},
+					'Phone':{
+						type: 'string',
+					    required: true,
+						message: '请输入电话',
+						trigger: ['blur', 'change'],
+					},
+					'id_NO':{
+						type: 'string',
+					    required: true,
+						message: '请输入身份证号',
+						trigger: ['blur', 'change'],
+					},
+					'rolekey':{
+						type: 'string',
+						required: true,
+						message: '请选择OA辅助角色',
+						trigger: ['blur', 'change'],
+					}
+				},
+				}
+		},
+		mounted() {
+			this.getDept();
+		},
+		methods:{
+			getDept(){
+				this.$Api.hr.profiling.getDept().then((res)=>{
+					if(res.data.code==200){
+						this.deptpickerColumns.push(res.data.data.rows)
+						this.deptpickerColumns.push(res.data.data.rows1)
+						this.deptpickercolumnData.push(res.data.data.rows1);
+						this.deptpickercolumnData.push(res.data.data.rows2);
+						this.deptpickercolumnData.push(res.data.data.rows3);
+					}
+				})
+			},
+			getUser(){
+				const _this=this
+				uni.chooseImage({
+					count: 6,
+					sizeType: ['original'],
+					sourceType: ['camera'],
+					success: function(res) {
+						_this.imgToBase64(res.tempFilePaths[0]).then(base64=>{
+								_this.imgbase64=base64.substring(base64.indexOf(',')+1);
+								_this.getToken();
+						})
+						
+					    }
+					})
+				},
+			imgToBase64(data){
+								return new Promise((resolve,reject)=>{
+										pathToBase64(data).then(base64 => {
+											resolve(base64)
+										 }).catch(error => {
+											console.error(error)
+											reject(error)
+										})		
+								})			
+							},
+			getOrc(){
+				const _this=this
+				_this.loading=true;
+				uni.request({
+					method:'POST',
+				    url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/idcard',
+				    data: {
+				        access_token:_this.access_token,
+						image:_this.imgbase64,
+						id_card_side:'front',
+				    },
+				    header: {
+				        'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
+				    },
+				    success: (res) => {
+						_this.loading=false;
+				        _this.formData.user_name=res.data.words_result['姓名'].words;
+						_this.formData.sex=res.data.words_result['性别'].words;
+						_this.formData.nation=res.data.words_result['民族'].words;
+						_this.formData.birth=res.data.words_result['出生'].words;
+						_this.formData.address=res.data.words_result['住址'].words;
+						_this.formData.id_NO=res.data.words_result['公民身份号码'].words;
+				    },
+					fail:(res)=>{
+					  uni.showToast({
+					    icon: 'none',
+					    position: 'top',
+					    title: "获取身份证失败"
+					});
+					_this.loading=false;
+					}
+				});
+			},
+			getToken(){
+				const _this=this
+				_this.loading=true;
+				uni.request({
+					method:'POST',
+				    url: 'https://aip.baidubce.com/oauth/2.0/token',
+					header: {
+					    'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
+					},
+				    data: {
+				        grant_type: 'client_credentials',
+						client_id:'o6YjhMfi8mUkyPkAh98sTufN',
+						client_secret:'Yeto6wl3gGRTDq4ut6rBWpfbuPGg2aXu',
+				    },
+				    success: (res) => {
+						_this.loading=false;
+						_this.access_token=res.data.access_token;
+						_this.getOrc(); 
+				    },
+					fail: (res)=>{
+						uni.showToast({
+						    icon: 'none',
+						    position: 'top',
+						    title: "获取Token失败"
+						});
+						_this.loading=false;
+					}
+				});
+			},
+			deptconfirm(e){
+				this.formData.deptkey=e.value[0].DEPT_NAME+'-'+e.value[1].DEPT_NAME
+				this.formData.deptId=e.value[1].DEPT_ID
+				this.deptpickershow=false;
+			},
+			changeHandler(e){
+				 const { columnIndex,
+				          value,
+						  values, // values为当前变化列的数组内容
+				          index,
+						// 微信小程序无法将picker实例传出来，只能通过ref操作
+				        picker = this.$refs.uPicker
+				                } = e
+				                // 当第一列值发生变化时，变化第二列(后一列)对应的选项
+				                if (columnIndex === 0) {
+				                    // picker为选择器this实例，变化第二列对应的选项
+				                    picker.setColumnValues(1, this.deptpickercolumnData[index])
+				                }
+			},
+			roleConfirm(e){
+				this.formData.rolekey=e.value[0].role_name
+				this.formData.roleId=e.value[0].role_id
+				this.rolePickershow=false;
+
+			},
+			isLoginChange(e){
+				if(e==0){this.formData.rolekey='';this.formData.roleId=''}
+				this.isRoleShow=e==1?true:false;
+			},
+			submit(){
+				const _this=this;
+				this.loading=true;
+				this.$refs.form.validate().then(res => {
+								this.$Api.hr.profiling.addUser(this.formData).then((res)=>{
+									this.loading=false;
+									if(res.data.code==200){
+										_this.goItem(res.data.data.work_no);
+									}
+								})
+							}).catch(errors => {
+								this.loading=false;
+								uni.$u.toast('校验失败')
+							})
+			  },
+			  goItem(work_no){
+			  	uni.navigateTo({
+			  		url: "/pages/index/hr/profiling/profiling_item?work_no="+work_no+"&user_name="+this.formData.user_name+"&deptkey="+this.formData.deptkey+"&JOB_POSITION="+this.formData.JOB_POSITION+"&sex="+this.formData.sex,
+			  		animationDuration: 200
+			  	});
+			  },
+			},
+		
+		}
+</script>
+<style >
+	.warpper{
+		padding:0 30px;
+	}
+	.u-radio{
+		margin-left: 10px;
+	}
+</style>

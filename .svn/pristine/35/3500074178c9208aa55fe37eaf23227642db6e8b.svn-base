@@ -1,0 +1,31 @@
+import request from './http.js' //引入http.js
+const api = request
+export default {
+	//登陆
+	login:{
+		// 登陆接口
+		login:(data)=>{
+				return api.request('/api/login', data) //接口地址
+		},
+	},
+	//生产
+	production:{
+		// 刷卡报工
+		report:{
+			// 流转卡扫码获取数据
+			getInfo:(data)=>{
+				return api.request('/production/report/get-info',data)
+			},
+			// 流转工序详细信息
+			getProcessAssignInfo:(data)=>{
+				return api.request('/production/report/get-process-assign-info',data)
+			},
+			//报工
+			saveCompleteQty:(data)=>{
+				return api.request('/production/report/save-complete-qty',data)
+			}
+			
+		}
+	}
+	
+}

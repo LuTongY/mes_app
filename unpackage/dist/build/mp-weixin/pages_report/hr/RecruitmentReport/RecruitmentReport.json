@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "招聘者列表",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-search": "/uview-ui/components/u-search/u-search",
+    "u-empty": "/uview-ui/components/u-empty/u-empty",
+    "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell": "/uview-ui/components/u-cell/u-cell",
+    "loading": "/components/loading/loading"
+  }
+}

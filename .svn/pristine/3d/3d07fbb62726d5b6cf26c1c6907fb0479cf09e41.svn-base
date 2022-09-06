@@ -1,0 +1,122 @@
+import request from './http.js' //引入http.js
+const api = request
+export default {
+	//登陆
+	login:{
+		// 登陆接口
+		login:(data)=>{
+				return api.request('/api/login', data) 
+		},
+		// 退出登录
+		logout:(data)=>{
+			return api.request('/api/logout', data) 
+		}
+	},
+	//首页
+	index:{
+		//获取菜单
+		GetSystemMenu:()=>{
+			  return api.request('/auth/mobile-menu/get-system-menu');
+		},
+	},
+	//生产
+	production:{
+		// 刷卡报工
+		report:{
+			// 流转卡扫码获取数据
+			getInfo:(data)=>{
+				return api.request('/production/report/get-info',data)
+			},
+			// 流转工序详细信息
+			getProcessAssignInfo:(data)=>{
+				return api.request('/production/report/get-process-assign-info',data)
+			},
+			//报工
+			saveCompleteQty:(data)=>{
+				return api.request('/production/report/save-complete-qty',data)
+			}
+			
+		}
+	},
+	// 报表类
+	report:{
+		dailyStatement:{
+			  GetMobileList:(data)=>{
+				  return api.request('/trade/daily/get-mobile-list',data)
+			  }
+		},
+		// 五金日报
+				dailyReport:{
+					//获取列表
+					GetList:(data)=>{
+						return api.request('/production/daily-report/get-list',data)
+					},
+					//获取详情
+					GetListInfo:(data)=>{
+						// console.log(data);
+						return api.request('/production/daily-report/edit-info',data)
+					},
+					//编辑报表
+					edit:(data)=>{
+						// console.log(data);
+						return api.request('/production/daily-report/edit',data)
+					},
+					//删除
+					delete:(data)=>{
+						// console.log(data);
+						return api.request('/production/daily-report/delete',data)
+					},
+					getStatList:(data)=>{
+						// console.log(data);
+						return api.request('/production/daily-report/get-stat-list',data)
+					},
+					GetStatDetailList:(data)=>{
+						// console.log(data);
+						return api.request('/production/daily-report/get-stat-detail-list',data)
+					}
+				},
+		//财务报表
+		finance:{
+			//出纳余额表
+			teller:{
+				GetList:(search)=>{
+					 return api.request('/mobile-report/teller/get-list',search)
+				}
+			},
+			//出纳余额表
+			cashFlow:{
+				GetList:(search)=>{
+					 return api.request('/mobile-report/cashFlow/get-list',search)
+				}
+			}
+		},
+		//人资报表
+		hr:{
+		   // 招聘工作记录
+			RecruitmentReport:{
+				//获取汇总数据
+				GetStatList:(search)=>{
+					 return api.request('/hr/recruitment-report/get-stat-list',search)
+				},
+				//详细页数据
+				GetStatDetailList:(search)=>{
+					 return api.request('/hr/recruitment-report/get-stat-detail-list',search)
+				},	
+		   },
+		   //招聘沟通记录管理
+		   CandidateContact:{
+			   //获取统计列表(手机端)
+			   GetStatList:(search)=>{
+				    return api.request('/hr/candidate-contact/get-stat-list',search)
+			   },
+			   //获取统计明细(手机端)
+			   GetStatDetail:(search)=>{
+				   return api.request('/hr/candidate-contact/get-stat-detail',search)
+			   }
+		   }
+		}
+	}
+	//外贸部日报表
+	
+	
+}

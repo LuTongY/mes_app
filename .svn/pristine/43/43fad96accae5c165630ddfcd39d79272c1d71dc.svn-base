@@ -1,0 +1,22 @@
+
+.report_warpper.data-v-231e0ade{
+		height:calc(100vh - 44px);
+}
+.seaerch_warpper.data-v-231e0ade{
+		height: 37px;
+		padding: 8px 10px;
+		border-bottom: 1px solid #ECECEC;
+		display: flex;
+}
+.search.data-v-231e0ade{
+		flex: 5;
+}
+.calendar_icon.data-v-231e0ade{
+	flex:1;
+	margin: 0 auto;
+}
+.main.data-v-231e0ade{
+	height: calc(100% - 54px);
+	overflow: auto;
+}
+

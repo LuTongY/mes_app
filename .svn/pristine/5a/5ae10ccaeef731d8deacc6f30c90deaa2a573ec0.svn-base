@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "扫码报工",
+  "usingComponents": {
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "loading": "/components/loading/loading"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "五金日报汇总",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u--form": "/uview-ui/components/u--form/u--form",
+    "u--input": "/uview-ui/components/u--input/u--input",
+    "u-datetime-picker": "/uview-ui/components/u-datetime-picker/u-datetime-picker",
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "u-row": "/uview-ui/components/u-row/u-row",
+    "u-col": "/uview-ui/components/u-col/u-col"
+  }
+}

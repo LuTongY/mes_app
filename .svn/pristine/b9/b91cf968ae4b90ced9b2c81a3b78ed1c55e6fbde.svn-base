@@ -1,0 +1,46 @@
+<template>
+	<u-tabbar
+		:value="value1"
+		@change="change1"
+		:fixed="true"
+		:border="true"
+		:placeholder="false"
+		:safeAreaInsetBottom="false"
+	>
+	<template v-for="(item,index) in tabbarData">
+		<u-tabbar-item :text="item.title" icon="home" v-if="item.isShow == 0"></u-tabbar-item>
+	</template>
+	</u-tabbar>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				tabbarData:[],
+				value1:this.$store.state.tabbarIndex,
+			}
+		},
+		mounted() {
+			this.tabbarData=JSON.parse(uni.getStorageSync('menu')).menus || []
+		},
+		methods:{
+			change1:function(index){
+				uni.setStorageSync('tabbarIndex',index);
+				this.$store.dispatch('updateTabbarIndex',index);
+				uni.reLaunch({
+					url:this.tabbarData[index].path,
+					animationType: 'none',
+					// animationDuration:50,
+				})
+				
+				
+			},
+		}
+	}
+</script>
+<style scoped>
+	 /deep/.u-tabbar__content{
+		background: #F6F6F7!important
+	}
+</style>

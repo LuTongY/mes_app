@@ -1,0 +1,358 @@
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/report/finance/cashFlow/cashFlow"],{
+
+/***/ 242:
+/*!********************************************************************************************!*\
+  !*** L:/work_LT/MES_APP/main.js?{"page":"pages%2Freport%2Ffinance%2FcashFlow%2FcashFlow"} ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 5);
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 3));
+var _cashFlow = _interopRequireDefault(__webpack_require__(/*! ./pages/report/finance/cashFlow/cashFlow.vue */ 243));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
+createPage(_cashFlow.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 243:
+/*!*********************************************************************!*\
+  !*** L:/work_LT/MES_APP/pages/report/finance/cashFlow/cashFlow.vue ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cashFlow.vue?vue&type=template&id=33eca538& */ 244);
+/* harmony import */ var _cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cashFlow.vue?vue&type=script&lang=js& */ 246);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 11);
+
+var renderjs
+
+
+
+
+/* normalize component */
+
+var component = Object(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null,
+  false,
+  _cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["components"],
+  renderjs
+)
+
+component.options.__file = "pages/report/finance/cashFlow/cashFlow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ 244:
+/*!****************************************************************************************************!*\
+  !*** L:/work_LT/MES_APP/pages/report/finance/cashFlow/cashFlow.vue?vue&type=template&id=33eca538& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./cashFlow.vue?vue&type=template&id=33eca538& */ 245);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_template_id_33eca538___WEBPACK_IMPORTED_MODULE_0__["components"]; });
+
+
+
+/***/ }),
+
+/***/ 245:
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!L:/work_LT/MES_APP/pages/report/finance/cashFlow/cashFlow.vue?vue&type=template&id=33eca538& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
+var components
+try {
+  components = {
+    gdxTable: function() {
+      return __webpack_require__.e(/*! import() | components/gdx-table/gdx-table */ "components/gdx-table/gdx-table").then(__webpack_require__.bind(null, /*! @/components/gdx-table/gdx-table.vue */ 320))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+}
+var recyclableRender = false
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ 246:
+/*!**********************************************************************************************!*\
+  !*** L:/work_LT/MES_APP/pages/report/finance/cashFlow/cashFlow.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./cashFlow.vue?vue&type=script&lang=js& */ 247);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_cashFlow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ 247:
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!L:/work_LT/MES_APP/pages/report/finance/cashFlow/cashFlow.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default =
+{
+  data: function data() {
+    return {
+      data: [{
+        "ProjectID": "1",
+        "citemname": "销售商品、提供劳务收到的现金",
+        "Debit": "10346013.57",
+        "Credit": ".00" },
+      {
+        "ProjectID": "2",
+        "citemname": "收到的税费返还",
+        "Debit": "562863.99",
+        "Credit": ".00" },
+      {
+        "ProjectID": "3",
+        "citemname": "收到的其他与经营活动的现金",
+        "Debit": "1908641.30",
+        "Credit": ".00" },
+      {
+        "ProjectID": "4",
+        "citemname": "购买商品、接受劳务支付的现金",
+        "Debit": ".00",
+        "Credit": "11876708.91" },
+      {
+        "ProjectID": "5",
+        "citemname": "支付给职工以及为职工支付的现金",
+        "Debit": ".00",
+        "Credit": "659916.25" },
+      {
+        "ProjectID": "6",
+        "citemname": "支付的各项税费",
+        "Debit": ".00",
+        "Credit": "299973.32" },
+      {
+        "ProjectID": "7",
+        "citemname": "支付的与其他经营活动有关的现金",
+        "Debit": ".00",
+        "Credit": "1114582.24" },
+      {
+        "ProjectID": "9",
+        "citemname": "取得投资收益所收到的现金",
+        "Debit": "22175.52",
+        "Credit": ".00" },
+      {
+        "ProjectID": "18",
+        "citemname": "借款所收到的现金",
+        "Debit": "17000000.00",
+        "Credit": ".00" },
+      {
+        "ProjectID": "19",
+        "citemname": "收到的其他与筹资活动有关的现金",
+        "Debit": "119718000.00",
+        "Credit": ".00" },
+      {
+        "ProjectID": "20",
+        "citemname": "偿还债务所支付的现金",
+        "Debit": ".00",
+        "Credit": "16000000.00" },
+      {
+        "ProjectID": "21",
+        "citemname": "分配股利、利润或偿还利息所支付的现金",
+        "Debit": ".00",
+        "Credit": "1036030.83" },
+      {
+        "ProjectID": "22",
+        "citemname": "支付的其他与筹资活动有关的现金",
+        "Debit": ".00",
+        "Credit": "119720000.00" },
+      {
+        "ProjectID": "7",
+        "citemname": "支付的与其他经营活动有关的现金",
+        "Debit": ".00",
+        "Credit": "1114582.24" },
+      {
+        "ProjectID": "9",
+        "citemname": "取得投资收益所收到的现金",
+        "Debit": "22175.52",
+        "Credit": ".00" },
+      {
+        "ProjectID": "18",
+        "citemname": "借款所收到的现金",
+        "Debit": "17000000.00",
+        "Credit": ".00" },
+      {
+        "ProjectID": "19",
+        "citemname": "收到的其他与筹资活动有关的现金",
+        "Debit": "119718000.00",
+        "Credit": ".00" },
+      {
+        "ProjectID": "20",
+        "citemname": "偿还债务所支付的现金",
+        "Debit": ".00",
+        "Credit": "16000000.00" },
+      {
+        "ProjectID": "21",
+        "citemname": "分配股利、利润或偿还利息所支付的现金",
+        "Debit": ".00",
+        "Credit": "1036030.83" },
+      {
+        "ProjectID": "22",
+        "citemname": "支付的其他与筹资活动有关的现金",
+        "Debit": ".00",
+        "Credit": "119720000.00" },
+      {
+        "ProjectID": "7",
+        "citemname": "支付的与其他经营活动有关的现金",
+        "Debit": ".00",
+        "Credit": "1114582.24" },
+      {
+        "ProjectID": "9",
+        "citemname": "取得投资收益所收到的现金",
+        "Debit": "22175.52",
+        "Credit": ".00" },
+      {
+        "ProjectID": "18",
+        "citemname": "借款所收到的现金",
+        "Debit": "17000000.00",
+        "Credit": ".00" },
+      {
+        "ProjectID": "19",
+        "citemname": "收到的其他与筹资活动有关的现金",
+        "Debit": "119718000.00",
+        "Credit": ".00" },
+      {
+        "ProjectID": "20",
+        "citemname": "偿还债务所支付的现金",
+        "Debit": ".00",
+        "Credit": "16000000.00" },
+      {
+        "ProjectID": "21",
+        "citemname": "分配股利、利润或偿还利息所支付的现金",
+        "Debit": ".00",
+        "Credit": "1036030.83" },
+      {
+        "ProjectID": "22",
+        "citemname": "支付的其他与筹资活动有关的现金",
+        "Debit": ".00",
+        "Credit": "119720000.00" }],
+
+      column: [{
+        label: '现金流量项目',
+        width: '220px',
+        prop: 'citemname',
+        sum: true },
+      {
+        label: '收入',
+        prop: 'Debit' },
+      {
+        label: '支出',
+        prop: 'Credit',
+        sum: true }],
+
+      footer: [] };
+
+  },
+  mounted: function mounted() {
+    this.dataFormatting();
+  },
+  methods: {
+    dataFormatting: function dataFormatting() {var _this = this;
+      var footer = { citemname: '总结', Debit: 0, Credit: 0 };
+      this.data.forEach(function (item, index) {
+        footer.Debit += parseFloat(item.Debit);
+        footer.Credit += parseFloat(item.Credit);
+        item.Debit = _this.jeFormatter(item.Debit);
+        item.Credit = _this.jeFormatter(item.Credit);
+      });
+      footer.Debit = this.jeFormatter(footer.Debit);
+      footer.Credit = this.jeFormatter(footer.Credit);
+      this.footer.push(footer);
+      console.log(this.footer);
+    },
+    jeFormatter: function jeFormatter(value, row) {
+      if (parseInt(value) <= 0 || !value) {
+        return "";
+      } else
+      {
+        return this.commafy(Math.round(value * 100) / 100, 0);
+      }
+    },
+    commafy: function commafy(num, n)
+    {
+      num = String(num.toFixed(n));
+      var re = /(-?\d+)(\d{3})/;
+      while (re.test(num)) {
+        num = num.replace(re, "$1,$2");
+      }
+      return num;
+    } } };exports.default = _default;
+
+/***/ })
+
+},[[242,"common/runtime","common/vendor"]]]);
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/pages/report/finance/cashFlow/cashFlow.js.map

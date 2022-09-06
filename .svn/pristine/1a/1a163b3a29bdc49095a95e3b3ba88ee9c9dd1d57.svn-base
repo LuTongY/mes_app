@@ -1,0 +1,12 @@
+
+.data-v-1c2a4684 .u-tabbar__content{
+	background: #F6F6F7!important
+}
+image.data-v-1c2a4684{
+	width: 20px;
+	height: 20px;
+}
+.data-v-1c2a4684 .u-tabbar-item__text{
+	font-weight: 600;
+}
+

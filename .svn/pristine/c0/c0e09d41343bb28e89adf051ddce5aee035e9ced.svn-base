@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/index/index_Item",
+    "pages/production/index/index",
+    "pages/production/Report/Report",
+    "pages/production/Report/ReportItem",
+    "pages/frequently/index/index",
+    "pages/report/index/index",
+    "pages/report/dailyStatement/dailyStatement",
+    "pages/report/dailyStatement/dailyStatement_Item",
+    "layout/default/default",
+    "pages/home/index/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

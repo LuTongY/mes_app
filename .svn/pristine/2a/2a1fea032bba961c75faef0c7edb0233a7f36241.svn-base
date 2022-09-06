@@ -1,0 +1,95 @@
+.warpper.data-v-2eabd71e {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.warpper .seaerch_warpper.data-v-2eabd71e {
+  flex: 0 0 37px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #ECECEC;
+  display: flex;
+}
+.warpper .table.data-v-2eabd71e {
+  flex: 1;
+  overflow: hidden;
+  padding: 5px 0;
+}
+.calendar_icon.data-v-2eabd71e {
+  flex: 1;
+  margin: 0 auto;
+}
+.search.data-v-2eabd71e {
+  flex: 5;
+  text-align: center;
+  line-height: 40px;
+}
+.timeWarpper.data-v-2eabd71e {
+  width: 68vw;
+  padding: 8vw;
+}
+.table_main.data-v-2eabd71e {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: auto;
+}
+.table_main .table_header.data-v-2eabd71e {
+  padding: 5px 0;
+  display: flex;
+  flex: 0 0 30px;
+  line-height: 30px;
+  color: #fff;
+  background: #5189D2;
+  text-align: center;
+}
+.table_main .table_body.data-v-2eabd71e {
+  flex: 1;
+  overflow: auto;
+}
+.table_main .table_body .table_body_header_tr.data-v-2eabd71e {
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  background: #5189D2;
+  text-indent: 1em;
+}
+.table_main .table_body .table_body_header_tr .table_body_header_td.data-v-2eabd71e {
+  font-weight: 600;
+}
+.table_main .table_body .table_body_tr_main.data-v-2eabd71e {
+  display: flex;
+  text-align: center;
+  padding: 3px 0;
+  flex: 1;
+  word-break: break-all;
+}
+.table_main .table_body .table_body_tr_footer.data-v-2eabd71e {
+  display: flex;
+  font-weight: 600;
+  height: 30px;
+  line-height: 30px;
+}
+.table_main .table_footer.data-v-2eabd71e {
+  display: flex;
+  flex: 0 0 40px;
+  line-height: 40px;
+  color: #fff;
+  background: #5189D2;
+}
+.cMemo.data-v-2eabd71e {
+  flex: 0 0 80px;
+}
+.csocode.data-v-2eabd71e {
+  flex: 0 0 120px;
+}
+.iQuantity.data-v-2eabd71e {
+  flex: 0 0 80px;
+}
+.cInvName.data-v-2eabd71e {
+  flex: 1;
+}
+.table_body_tr_main.data-v-2eabd71e:nth-child(2n) {
+  background: #E6F3F9;
+}
+
